@@ -6,3 +6,9 @@
 module.exports.home = function (req, res) {
     res.render('index', { title: 'Express' });
 };
+
+
+
+module.exports.newApplication = function (req, res) {
+    res.render('index', { title: 'New application page' });
+};

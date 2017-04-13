@@ -8,6 +8,10 @@ var ctrlOthers = require('../controllers/others');
  * Home page
  */
 router.get('/', ctrlMain.home);
+router.get('/application/new', ctrlMain.newApplication);
+
+
+
 router.get('/others', ctrlOthers.others);
 
 
