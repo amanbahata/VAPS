@@ -10,7 +10,7 @@ router.post('/applications/new', ctrlApplications.applicationsCreate);
 router.get('/applications/open', ctrlApplications.listApplicationsOpen);
 router.get('/applications/check/:referenceNumber/:documentNumber', ctrlApplications.applicationCheck);
 router.get('/applications/:referenceNumber', ctrlApplications.applicationsReadOne);
-router.put('/applications/:referenceNumber', ctrlApplications.applicationsUpdateOne);
+router.post('/applications/:referenceNumber', ctrlApplications.assessmentCreate);
 
 
 module.exports = router;

@@ -49,17 +49,19 @@ module.exports.applicationsReadOne = function (req, res) {
 };
 
 
-module.exports.applicationsUpdateOne = function (req, res) {
-    if (req.params && req.params.referenceNumber){
+module.exports.assessmentCreate = function (req, res) {
+    var referenceNumber =  req.params.referenceNumber;
+    if (referenceNumber){
         Applic
-            .find({'reference_number' : req.params.referenceNumber},
+            .find({'reference_number' : referenceNumber})
+            .select('assessment assessment_status')
+            .exec(
                 function (err, application) {
-                    if (!application){
-                        sendJasonResponse(res, 404, {"message" : "application not found"});
-                    }else if (err) {
+                     if (err) {
                         sendJasonResponse(res, 400, err);
                     }else{
-                        sendJasonResponse(res, 200, application);
+
+                         doAddAssessment(req, res, application);
                     }
                 }
             );
@@ -68,8 +70,36 @@ module.exports.applicationsUpdateOne = function (req, res) {
             "message" : "Not found, reference number required"
         });
     }
-
 };
+
+var doAddAssessment = function (req, res, application) {
+    console.log(application);
+    console.log(req.body);
+  if (!application) {
+      sendJasonResponse(res, 404, {
+          "message" : "application reference number not found"
+      });
+  }else {
+      application.assessment.push({
+          assessor: req.body.assessor ,
+          visaNumber: req.body.visaNumber ,
+          reason: req.body.reason
+      });
+      application.assessment_status = req.body.assessmentStatus;
+      application.save(function(err, application){
+          var thisAssessment;
+          if(err){
+              sendJasonResponse(res, 400, err);
+          }else{
+              thisAssessment = application.assessment[0];
+              sendJasonResponse(res, 201, thisAssessment);
+          }
+      });
+  }
+};
+
+
+
 
 module.exports.applicationsCreate= function (req, res) {
     Applic.create({
@@ -103,14 +133,10 @@ module.exports.applicationsCreate= function (req, res) {
 
 
 module.exports.applicationCheck = function (req, res) {
-
-    console.log(req.params);
-
     if (req.params && req.params.referenceNumber && req.params.documentNumber){
         Applic
             .find({'reference_number' : req.params.referenceNumber, 'document_number': req.params.documentNumber},
             function (err, application) {
-                var response;
                     if (!application){
                         sendJasonResponse(res, 404, {"message" : "application not found"});
                     }else if (err) {
