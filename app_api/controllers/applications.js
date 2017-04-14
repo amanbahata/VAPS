@@ -80,6 +80,8 @@ var doAddAssessment = function (req, res, application) {
           "message" : "application reference number not found"
       });
   }else {
+
+      //TODO fix the push problem of the assessment
       application.assessment.push({
           assessor: req.body.assessor ,
           visaNumber: req.body.visaNumber ,
