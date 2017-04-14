@@ -5,18 +5,70 @@
 var mongoose = require('mongoose');
 var Applic = mongoose.model('Application');
 
-var sendJsonResponse = function (res, status, content) {
+var sendJasonResponse = function (res, status, content) {
     res.status(status);
     res.json(content);
 };
 
 
-module.exports.listApplications = function (req, res) {
-    sendJsonResponse(res, 200, {"status" : "success"});
+module.exports.listApplicationsOpen = function (req, res) {
+    Applic.find({'open': true},
+        function (err, applications) {
+            if (!applications || applications.length < 1 ){
+                sendJasonResponse(res, 400, {"message" : "No open applications found"});
+            }else if (err) {
+                sendJasonResponse(res, 400, err);
+            }else{
+                sendJasonResponse(res, 200, applications);
+            }
+
+        });
+
 };
 
 module.exports.applicationsReadOne = function (req, res) {
-    sendJsonResponse(res, 200, {"status" : "success"});
+    if (req.params && req.params.referenceNumber){
+        Applic
+            .find({'reference_number' : req.params.referenceNumber},
+                function (err, application) {
+                    if (!application){
+                        sendJasonResponse(res, 404, {"message" : "application not found"});
+                    }else if (err) {
+                        sendJasonResponse(res, 400, err);
+                    }else{
+                        sendJasonResponse(res, 200, application);
+                    }
+                }
+            );
+    }else{
+        sendJasonResponse(res, 404, {
+            "message" : "Not found, reference number required"
+        });
+    }
+
+};
+
+
+module.exports.applicationsUpdateOne = function (req, res) {
+    if (req.params && req.params.referenceNumber){
+        Applic
+            .find({'reference_number' : req.params.referenceNumber},
+                function (err, application) {
+                    if (!application){
+                        sendJasonResponse(res, 404, {"message" : "application not found"});
+                    }else if (err) {
+                        sendJasonResponse(res, 400, err);
+                    }else{
+                        sendJasonResponse(res, 200, application);
+                    }
+                }
+            );
+    }else{
+        sendJasonResponse(res, 404, {
+            "message" : "Not found, reference number required"
+        });
+    }
+
 };
 
 module.exports.applicationsCreate= function (req, res) {
@@ -42,9 +94,36 @@ module.exports.applicationsCreate= function (req, res) {
         contact_address_in_ethiopia: req.body.contactAddressInEthiopia
     }, function (err, application) {
         if(err){
-            sendJsonResponse(res, 400, err);
+            sendJasonResponse(res, 400, err);
         }else{
-            sendJsonResponse(res, 201, application);
+            sendJasonResponse(res, 201, application);
         }
     });
+};
+
+
+module.exports.applicationCheck = function (req, res) {
+
+    console.log(req.params);
+
+    if (req.params && req.params.referenceNumber && req.params.documentNumber){
+        Applic
+            .find({'reference_number' : req.params.referenceNumber, 'document_number': req.params.documentNumber},
+            function (err, application) {
+                var response;
+                    if (!application){
+                        sendJasonResponse(res, 404, {"message" : "application not found"});
+                    }else if (err) {
+                        sendJasonResponse(res, 400, err);
+                    }else{
+                        sendJasonResponse(res, 200, application);
+                    }
+                }
+            );
+    }else{
+        sendJasonResponse(res, 404, {
+            "message" : "Not found, reference number required"
+        });
+    }
+
 };

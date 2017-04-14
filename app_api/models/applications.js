@@ -3,20 +3,21 @@
  */
 var mongoose = require('mongoose');
 require('mongoose-type-email');
-var shortId = require('shortid');
-var validators = require('mongoose-validators');
 var moment = require('moment');
+var shortId = require('shortid');
 
 var assessment_Schema = new mongoose.Schema({
-    assessment_status: {type: String, enum: ['SUBMITTED', 'APPROVED', 'DENIED'], default: 'SUBMITTED'},
     assessor: {type: String, required: true},
+    visaType: {type: String, default: "VISITOR"},
     visaNumber: String,
     issueDate: {type: Date, default: Date.now},
     validUntil: {type: Date, default: function () {return + new Date() + 90*24*60*60*1000} }  // sets the valid until date to 3 months from approval
 });
 
 var applicant_Schema = new mongoose.Schema({
-    reference_number: {type: String, default: 'UK-' + shortId.generate() },
+    open: {type: Boolean, default: true},
+    reference_number: {type: String, default: shortId.generate, unique: true},
+    assessment_status: {type: String, enum: ['SUBMITTED', 'APPROVED', 'DENIED'], default: 'SUBMITTED'},
     application_date: {type: Date, default: Date.now},
     title: {type: String, enum: ['MR', 'MRS', 'MISS'], uppercase: true},
     full_name: {type: String, required: true, uppercase: true},

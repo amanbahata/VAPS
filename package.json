@@ -14,7 +14,6 @@
     "momentjs": "^2.0.0",
     "mongoose": "^4.9.4",
     "mongoose-type-email": "^1.0.5",
-    "mongoose-validators": "^0.1.0",
     "morgan": "~1.7.0",
     "nodemon": "^1.11.0",
     "pug": "^2.0.0-beta11",

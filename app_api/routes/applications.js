@@ -7,9 +7,10 @@ var router = express.Router();
 var ctrlApplications = require('../controllers/applications');
 
 router.post('/applications/new', ctrlApplications.applicationsCreate);
-router.get('/applications', ctrlApplications.listApplications);
-router.get('/applications/:applicantId', ctrlApplications.applicationsReadOne);
-// router.put('/applications/applicantId', ctrlApplications.applicationUpdateOne);
+router.get('/applications/open', ctrlApplications.listApplicationsOpen);
+router.get('/applications/check/:referenceNumber/:documentNumber', ctrlApplications.applicationCheck);
+router.get('/applications/:referenceNumber', ctrlApplications.applicationsReadOne);
+router.put('/applications/:referenceNumber', ctrlApplications.applicationsUpdateOne);
 
 
 module.exports = router;
