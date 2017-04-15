@@ -23,7 +23,6 @@ module.exports.listApplicationsOpen = function (req, res) {
             }
 
         });
-
 };
 
 module.exports.applicationsReadOne = function (req, res) {
@@ -54,7 +53,7 @@ module.exports.assessmentCreate = function (req, res) {
     if (referenceNumber){
         Applic
             .find({'reference_number' : referenceNumber})
-            .select('assessment assessment_status')
+            .select('assessment_status assessment')
             .exec(
                 function (err, application) {
                      if (err) {
@@ -73,22 +72,19 @@ module.exports.assessmentCreate = function (req, res) {
 };
 
 var doAddAssessment = function (req, res, application) {
-    console.log(application);
-    console.log(req.body);
   if (!application) {
       sendJasonResponse(res, 404, {
           "message" : "application reference number not found"
       });
   }else {
-
-      //TODO fix the push problem of the assessment
-      application.assessment.push({
+      application[0].assessment.push({
           assessor: req.body.assessor ,
           visaNumber: req.body.visaNumber ,
           reason: req.body.reason
       });
-      application.assessment_status = req.body.assessmentStatus;
-      application.save(function(err, application){
+      application[0].assessment_status = req.body.assessmentStatus;
+      application[0].open = false;
+      application[0].save(function(err, application){
           var thisAssessment;
           if(err){
               sendJasonResponse(res, 400, err);
@@ -139,7 +135,8 @@ module.exports.applicationCheck = function (req, res) {
         Applic
             .find({'reference_number' : req.params.referenceNumber, 'document_number': req.params.documentNumber},
             function (err, application) {
-                    if (!application){
+            var response;
+                    if (application.length < 1){
                         sendJasonResponse(res, 404, {"message" : "application not found"});
                     }else if (err) {
                         sendJasonResponse(res, 400, err);
@@ -150,7 +147,7 @@ module.exports.applicationCheck = function (req, res) {
             );
     }else{
         sendJasonResponse(res, 404, {
-            "message" : "Not found, reference number required"
+            "message" : "Not found, reference or document number required"
         });
     }
 

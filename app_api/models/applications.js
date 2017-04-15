@@ -11,7 +11,7 @@ var assessment_Schema = new mongoose.Schema({
     visaType: {type: String, default: "VISITOR"},
     visaNumber: {type: String, uppercase: true},
     issueDate: {type: Date, default: Date.now},
-    validUntil: {type: Date, default: function () {return + new Date() + 90*24*60*60*1000} },  // sets the valid until date to 3 months from approval
+    validUntil: {type: Date, default: + new Date() + 90*24*60*60*1000},  // sets the valid until date to 3 months from approval
     reason: {type: String, uppercase: true}
 });
 
