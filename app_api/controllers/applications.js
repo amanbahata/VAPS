@@ -10,7 +10,11 @@ var sendJasonResponse = function (res, status, content) {
     res.json(content);
 };
 
-
+/**
+ * Returns the list of open applications
+ * @param req
+ * @param res
+ */
 module.exports.listApplicationsOpen = function (req, res) {
     Applic.find({'open': true},
         function (err, applications) {
@@ -25,6 +29,12 @@ module.exports.listApplicationsOpen = function (req, res) {
         });
 };
 
+
+/**
+ * Returns a single open application
+ * @param req
+ * @param res
+ */
 module.exports.applicationsReadOne = function (req, res) {
     if (req.params && req.params.referenceNumber){
         Applic
@@ -47,7 +57,11 @@ module.exports.applicationsReadOne = function (req, res) {
 
 };
 
-
+/**
+ * Adds assessment of an open application
+ * @param req
+ * @param res
+ */
 module.exports.assessmentCreate = function (req, res) {
     var referenceNumber =  req.params.referenceNumber;
     if (referenceNumber){
@@ -71,6 +85,13 @@ module.exports.assessmentCreate = function (req, res) {
     }
 };
 
+
+/**
+ * Adds the assessment outcome of a singe application
+ * @param req
+ * @param res
+ * @param application
+ */
 var doAddAssessment = function (req, res, application) {
   if (!application) {
       sendJasonResponse(res, 404, {
@@ -97,8 +118,11 @@ var doAddAssessment = function (req, res, application) {
 };
 
 
-
-
+/**
+ * Creates a new application into the database
+ * @param req
+ * @param res
+ */
 module.exports.applicationsCreate= function (req, res) {
     Applic.create({
         title: req.body.title,
@@ -129,13 +153,16 @@ module.exports.applicationsCreate= function (req, res) {
     });
 };
 
-
+/**
+ * Returns the information of the status of a single application queried by a user
+ * @param req
+ * @param res
+ */
 module.exports.applicationCheck = function (req, res) {
     if (req.params && req.params.referenceNumber && req.params.documentNumber){
         Applic
             .find({'reference_number' : req.params.referenceNumber, 'document_number': req.params.documentNumber},
             function (err, application) {
-            var response;
                     if (application.length < 1){
                         sendJasonResponse(res, 404, {"message" : "application not found"});
                     }else if (err) {
