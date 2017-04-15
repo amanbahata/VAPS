@@ -3,6 +3,18 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+.headerLogo img{
+
+    float: left;
+    padding-right: 1em;
+}
+.headerLogo h1{
+    position: relative;
+    padding-top: 0.5em;
+    margin-bottom: 1em;
+}
+
+
 a {
   color: #000000;
 }
