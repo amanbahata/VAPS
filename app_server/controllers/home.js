@@ -5,8 +5,7 @@
 
 module.exports.home = function (req, res) {
     res.render('index', {
-        title: 'VISA APPLICATION AND PROCESSING',
-        greeting: 'WELCOME,',
+        title: 'WELCOME,',
         information: ' visiting Ethiopia for pleasure has never been easier.'
     });
 };
