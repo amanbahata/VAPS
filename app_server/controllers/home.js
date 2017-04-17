@@ -103,7 +103,7 @@ module.exports.doManageApplication = function (req, res) {
     };
     request (requestOptions,
         function(err, response, body){
-            applicationDetailRenderer(req, res, body);
+            applicationDetailRenderer(req, res, body, response);
         }
     );
 };
@@ -113,16 +113,20 @@ module.exports.doManageApplication = function (req, res) {
  Rendering the single application
  */
 
-var applicationDetailRenderer = function(req, res, responseBody){
+var applicationDetailRenderer = function(req, res, responseBody, response){
     var message;
-    if (!responseBody) {
+    console.log(responseBody);
+    if (!responseBody[0] || response.statusCode == 404) {
         message = "API lookup error. Please try again." ;
+        res.render('manage_applications', {
+            form: false,
+            message: message
+        });
     }else {
         res.render('manage_applications', {
             title: responseBody[0].full_name,
             form: false,
-            application: responseBody[0],
-            message: responseBody.message
+            application: responseBody[0]
         });
     }
 };
@@ -138,10 +142,24 @@ module.exports.fileUpload = function (req, res) {
 module.exports.doFileUpload = function (req, res) {
 
     console.log(req.files);
+    var success = true;
 
-
-
-    res.render('file_upload', {
-        title: 'Documents uploaded'
-    });
+    for (var i = 0; i < req.files.length; i++) {
+        var sourceFile =  req.files[i].path;
+        var destFile = 'public/uploads/' + req.params.fileName + '/' + req.files[i].fieldname;
+        mv(sourceFile, destFile, {mkdirp: true}, function (err) {
+            console.log(err);
+            if (err){
+                success = false;
+            }
+        });
+    }
+    if (!success){
+        res.render('file_upload', {
+            title: 'Upload documents',
+            message: true
+        });
+    }else{
+        res.redirect('/');
+    }
 };
