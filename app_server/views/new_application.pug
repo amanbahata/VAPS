@@ -1,3 +1,295 @@
-//
-   Created by aman1 on 17/04/2017.
+
+extends layout
+
+block content
+    h2= title
+    .container
+        form.form-horizontal(action="", method="post", role="form")
+            fieldset
+                legend * please complete all the fields provided as it is indicated in your travel document.
+                .form-group
+                    label.col-lg-2.control-label(for='title') Title
+                    .col-lg-2
+                        select#title.form-control
+                            option Mr
+                            option Mrs
+                            option Miss
+                .form-group
+                    label.col-xs-10.col-sm-2.control-label(for="fullName") Full Name
+                    .col-xs-12.col-sm-10
+                        input#fullName.form-control(name="fullName")
+                .form-group
+                    label.col-xs-10.col-sm-2.control-label(for='dateOfBirth') Date of Birth
+                    .col-lg-3
+                        input#dateOfBirth.form-control(name='dateOfBirth', placeholder='MM/DD/YYY', type='text')
+                .form-group
+                    label.col-xs-10.col-sm-2.control-label(for="placeOfBirth") Place of Birth
+                    .col-xs-12.col-sm-10
+                        input#placeOfBirth.form-control(name="placeOfBirth")
+                .form-group
+                    label.col-xs-10.col-sm-2.control-label(for="countryOfBirth") Country of birth
+                    .col-xs-6.col-sm-5
+                        input#countryOfBirth.form-control(name="countryOfBirth")
+                .form-group
+                    label.col-lg-2.control-label(for='nationality') Nationality
+                    .col-lg-4
+                        select#nationality.form-control
+                            option Select your nationality
+                            option Argentina
+                            option Belarus
+                            option Belgium
+                            option Bosnia and Herzegovina
+                            option Brazil
+                            option Bulgaria
+                            option Canada
+                            option Chile
+                            option China
+                            option Colombia
+                            option Costa Rica
+                            option Croatia
+                            option Cuba
+                            option Cyprus
+                            option Czech Republic
+                            option Denmark
+                            option Dominican Republic
+                            option Egypt
+                            option Estonia
+                            option Finland
+                            option France
+                            option Georgia
+                            option Germany
+                            option Gibraltar
+                            option Greece
+                            option Hong Kong S.A.R., China
+                            option Hungary
+                            option Iceland
+                            option India
+                            option Indonesia
+                            option Iran
+                            option Iraq
+                            option Ireland
+                            option Israel
+                            option Italy
+                            option Jamaica
+                            option Japan
+                            option Kazakhstan
+                            option Kuwait
+                            option Kyrgyzstan
+                            option Laos
+                            option Latvia
+                            option Lebanon
+                            option Lithuania
+                            option Luxembourg
+                            option Macedonia
+                            option Malaysia
+                            option Malta
+                            option Mexico
+                            option Moldova
+                            option Monaco
+                            option Montenegro
+                            option Morocco
+                            option Netherlands
+                            option New Zealand
+                            option Nicaragua
+                            option North Korea
+                            option Norway
+                            option Pakistan
+                            option Palestinian Territory
+                            option Peru
+                            option Philippines
+                            option Poland
+                            option Portugal
+                            option Puerto Rico
+                            option Qatar
+                            option Romania
+                            option Russia
+                            option Saudi Arabia
+                            option Serbia
+                            option Singapore
+                            option Slovakia
+                            option Slovenia
+                            option South Africa
+                            option South Korea
+                            option Spain
+                            option Sri Lanka
+                            option Sweden
+                            option Switzerland
+                            option Taiwan
+                            option Thailand
+                            option Tunisia
+                            option Turkey
+                            option Ukraine
+                            option United Arab Emirates
+                            option United Kingdom
+                            option USA
+                            option Uzbekistan
+                            option Vietnam
+                .form-group
+                    label.col-xs-10.col-sm-2.control-label(for="homeAddress") Home address
+                    .col-xs-12.col-sm-10
+                        input#homeAddress.form-control(name="homeAddress")
+                .form-group
+                    label.col-xs-10.col-sm-2.control-label(for="city") City
+                    .col-xs-6.col-sm-5
+                        input#city.form-control(name="city")
+                .form-group
+                    label.col-xs-10.col-sm-2.control-label(for="postCode") Postcode
+                    .col-xs-3.col-sm-2
+                        input#postCode.form-control(name="postCode")
+                .form-group
+                    label.col-lg-2.control-label(for='country') Country
+                    .col-lg-4
+                        select#country.form-control
+                            option United Kingdom
+                .form-group
+                    label.col-xs-10.col-sm-2.control-label(for="contactNo") Contact number
+                    .col-xs-6.col-sm-5
+                        input#contactNo.form-control(name="contactNo")
+                .form-group
+                    label.col-lg-2.control-label(for='inputEmail') Email
+                    .col-lg-10
+                        input#inputEmail.form-control(type='text', placeholder='Email')
+                .form-group
+                    label.col-xs-10.col-sm-2.control-label(for="occupation") Occupation
+                    .col-xs-12.col-sm-10
+                        input#occupation.form-control(name="occupation")
+                .form-group
+                    label.col-lg-2.control-label Document type
+                    .col-lg-10
+                        .radio
+                            label
+                                input#ocumentType1(type='radio', name='documentType', value='passport', checked='')
+                                |             Passport
+                        .radio
+                            label
+                                input#documentType2(type='radio', name='documentType', value='travel document')
+                                |             Travel document
+                .form-group
+                    label.col-xs-10.col-sm-2.control-label(for="documentNumber") Document number
+                    .col-xs-6.col-sm-5
+                        input#documentNumber.form-control(name="documentNumber")
+                .form-group
+                    label.col-lg-2.control-label(for='countriesVisited') Countries visited in the last 5 years
+                    .col-lg-10
+                        textarea#countriesVisited.form-control(rows='3')
+                        span.help-block
+                            | Please provide the dates and countries you have visited in the last five years.
+                .form-group
+                    label.col-xs-10.col-sm-2.control-label(for='documentDateOfIssue') Document date of issue
+                    .col-lg-3
+                        input#documentDateOfIssue.form-control(name='documentDateOfIssue', placeholder='MM/DD/YYY', type='text')
+                .form-group
+                    label.col-lg-2.control-label(for='documentCountryOfIssue') Country of issue
+                    .col-lg-4
+                        select#documentCountryOfIssue.form-control
+                            option Select your nationality
+                            option Argentina
+                            option Belarus
+                            option Belgium
+                            option Bosnia and Herzegovina
+                            option Brazil
+                            option Bulgaria
+                            option Canada
+                            option Chile
+                            option China
+                            option Colombia
+                            option Costa Rica
+                            option Croatia
+                            option Cuba
+                            option Cyprus
+                            option Czech Republic
+                            option Denmark
+                            option Dominican Republic
+                            option Egypt
+                            option Estonia
+                            option Finland
+                            option France
+                            option Georgia
+                            option Germany
+                            option Gibraltar
+                            option Greece
+                            option Hong Kong S.A.R., China
+                            option Hungary
+                            option Iceland
+                            option India
+                            option Indonesia
+                            option Iran
+                            option Iraq
+                            option Ireland
+                            option Israel
+                            option Italy
+                            option Jamaica
+                            option Japan
+                            option Kazakhstan
+                            option Kuwait
+                            option Kyrgyzstan
+                            option Laos
+                            option Latvia
+                            option Lebanon
+                            option Lithuania
+                            option Luxembourg
+                            option Macedonia
+                            option Malaysia
+                            option Malta
+                            option Mexico
+                            option Moldova
+                            option Monaco
+                            option Montenegro
+                            option Morocco
+                            option Netherlands
+                            option New Zealand
+                            option Nicaragua
+                            option North Korea
+                            option Norway
+                            option Pakistan
+                            option Palestinian Territory
+                            option Peru
+                            option Philippines
+                            option Poland
+                            option Portugal
+                            option Puerto Rico
+                            option Qatar
+                            option Romania
+                            option Russia
+                            option Saudi Arabia
+                            option Serbia
+                            option Singapore
+                            option Slovakia
+                            option Slovenia
+                            option South Africa
+                            option South Korea
+                            option Spain
+                            option Sri Lanka
+                            option Sweden
+                            option Switzerland
+                            option Taiwan
+                            option Thailand
+                            option Tunisia
+                            option Turkey
+                            option Ukraine
+                            option United Arab Emirates
+                            option United Kingdom
+                            option USA
+                            option Uzbekistan
+                            option Vietnam
+
+
+
+
+                .form-group
+                    label.col-xs-10.col-sm-2.control-label(for='documentExpiryDate') Document expiry date
+                    .col-lg-3
+                        input#documentExpiryDate.form-control(name='documentExpiryDate', placeholder='MM/DD/YYY', type='text')
+                .form-group
+                    label.col-lg-2.control-label(for='contactAddressInEthiopia') Contact address in Ethiopia
+                    .col-lg-10
+                        textarea#contactAddressInEthiopia.form-control(rows='3')
+                        span.help-block
+                            | Please provide the full address of where you will be staying.
+
+                .form-group
+                    .col-lg-10.col-lg-offset-2
+                        button.btn.btn-default(type='reset') Cancel
+                        button.btn.btn-primary(type='submit') Submit
+
 

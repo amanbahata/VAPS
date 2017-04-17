@@ -31,6 +31,10 @@ h2 {
     margin-left: 45%;
 }
 
+.form-horizontal {
+    padding-right: 30em;
+}
+
 .footer {
   margin-top: 3em;
   background-color: #39a8e8;
@@ -39,7 +43,7 @@ h2 {
 
 .footer a {
   padding-top: 0.5em;
-  padding-right: 0.3em;
+  padding-right: 0.5em;
   color: white;
 }
 
