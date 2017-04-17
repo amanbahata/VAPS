@@ -4,6 +4,8 @@
 
 var request = require('request');
 var mv = require('mv');
+var mailer = require('../communication/application_notification_mailer');
+
 
 
 
@@ -64,6 +66,8 @@ module.exports.addNewApplication = function (req, res) {
     request (requestOptions,
         function(err, response){
             if (response.statusCode === 201){
+                console.log(response);
+                mailer.sendEmail(response.body.email, response.body.fullName, response.body.reference_number);
                 var fileName = req.body.fullName.toUpperCase() + req.body.documentNumber.toUpperCase();
                 fileName = fileName.replace(/\s+/g, '');
                 res.render('new_application', {
