@@ -124,6 +124,9 @@ var doAddAssessment = function (req, res, application) {
  * @param res
  */
 module.exports.applicationsCreate= function (req, res) {
+
+    console.log(req.body);
+
     Applic.create({
         title: req.body.title,
         full_name: req.body.fullName ,
