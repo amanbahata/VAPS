@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  h3=title
+  #{form}
+    if form
+      .container
+       form.form-horizontal(action="", method="post", role="form")
+        fieldset
+         legend * complete the following fields in order to retrieve your application
+         .form-group
+          label.col-lg-2.control-label(for='referenceNumber') Reference number
+          .col-lg-5
+           input#referenceNumber.form-control(type='text', placeholder='Reference number', name='referenceNumber')
+         .form-group
+          label.col-lg-2.control-label(for='documentNumber') Document number
+          .col-lg-5
+           input#documentNumber.form-control(type='text', placeholder='Document number', name='documentNumber')
+         .form-group
+          label.col-xs-10.col-sm-2.control-label(for='dateOfBirth') Date of Birth
+          .col-lg-3
+           input#dateOfBirth.form-control(name='dateOfBirth', placeholder='MM/DD/YYY', type='text')
+         .form-group
+          .col-lg-10.col-lg-offset-2
+           button.btn.btn-default(type='reset') Cancel
+           button.btn.btn-primary(type='submit') Submit
+    else
+     .container
+       if message
+          p #{message}
+       else
+         .panel.panel-primary
+          .panel-heading
+           h3.panel-title Your Application
+          .panel-body
+            .p Applicant full name: #{application.full_name}
+            .p Reference number: #{application.reference_number}
+            .p Contact email: #{application.email}
+            .p Status: #{application.assessment_status}
+

@@ -10,6 +10,9 @@ var ctrlOthers = require('../controllers/others');
 router.get('/', ctrlMain.home);
 router.get('/application/new', ctrlMain.newApplication);
 router.post('/application/new', ctrlMain.addNewApplication);
+router.get('/manage', ctrlMain.manageApplication);
+router.post('/manage', ctrlMain.doManageApplication);
+
 
 
 

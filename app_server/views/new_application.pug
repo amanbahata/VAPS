@@ -1,12 +1,7 @@
 
 extends layout
 
-
-
-
-
 block content
-
     #{success}
         if success
             .container
@@ -24,7 +19,7 @@ block content
                     if message
                         .alert.alert-dismissible.alert-danger
                             button.close(type='button', data-dismiss='alert') ×
-                            strong Submission failed ! Make sure yu have completed all fields
+                            strong Submission failed ! Make sure you have completed all fields
                             |  and try submitting again.
 
                 form.form-horizontal(action="", method="post", role="form")

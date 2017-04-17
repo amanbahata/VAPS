@@ -22,11 +22,10 @@ module.exports.home = function (req, res) {
 };
 
 
-
 module.exports.newApplication = function (req, res) {
     res.render('new_application', {
         title: 'New application',
-        seccess: false
+        success: false
     });
 };
 
@@ -76,4 +75,49 @@ module.exports.addNewApplication = function (req, res) {
             }
         }
     );
+};
+
+
+
+module.exports.manageApplication = function (req, res) {
+    res.render('manage_applications', {
+        title: 'Manage your application',
+        form: true
+    });
+};
+
+
+module.exports.doManageApplication = function (req, res) {
+    var requestOptions, path;
+   path = '/api/applications/check/' + req.body.referenceNumber + '/' + req.body.documentNumber;
+    requestOptions = {
+        url : apiOptions.server + path,
+        method : "GET",
+        json: {}
+    };
+    request (requestOptions,
+        function(err, response, body){
+            applicationDetailRenderer(req, res, body);
+        }
+    );
+};
+
+
+/*
+ Rendering the single application
+ */
+
+var applicationDetailRenderer = function(req, res, responseBody){
+    console.log(responseBody);
+    var message;
+    if (!responseBody) {
+        message = "API lookup error. Please try again." ;
+    }else {
+        res.render('manage_applications', {
+            title: responseBody[0].full_name,
+            form: false,
+            application: responseBody[0],
+            message: responseBody.message
+        });
+    }
 };
