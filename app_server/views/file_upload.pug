@@ -1,0 +1,20 @@
+
+extends layout
+
+block content
+
+    form.form-horizontal(action="/upload/" + fileName , method="post", role="form", enctype="multipart/form-data")
+        fieldset
+            legend * please complete all the the files with the title.
+            .form-group
+                label.col-xs-10.col-sm-2.control-label(for="travelDocPhoto") Travel document
+                .col-xs-12.col-sm-10
+                    input#travelDocPhoto.form-control(name="travelDocPhoto", placeholder='Travel document', type='file')
+            .form-group
+                label.col-xs-10.col-sm-2.control-label(for="supportingDocument1") Supporting document 1
+                .col-xs-12.col-sm-10
+                    input#supportingDocument1.form-control(name="supportingDocument1", placeholder='Supporting Document 1', type='file')
+            .form-group
+                .col-lg-10.col-lg-offset-2
+                    button.btn.btn-default(type='reset') Cancel
+                    button.btn.btn-primary(type='submit') Submit

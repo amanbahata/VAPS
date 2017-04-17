@@ -6,19 +6,18 @@ block content
         if success
             .container
                 .alert.alert-dismissible.alert-success
-                    button.close(type='button', data-dismiss='alert')
                     strong Complete!
                     |  You successfully have completed the application,
-                    |  you can now return to the
-                    a.alert-link(href='/')  Homepage
-                    | .
+                    |  you can now
+                    a.alert-link(href="/upload/"+ fileName)  Upload
+                    | &nbsp; the supporting documents.
         else
             h2= title
             .container
                 #{message}
                     if message
                         .alert.alert-dismissible.alert-danger
-                            button.close(type='button', data-dismiss='alert') ×
+                            button.close(type='button', data-dismiss='alert')
                             strong Submission failed ! Make sure you have completed all fields
                             |  and try submitting again.
 
@@ -46,8 +45,98 @@ block content
                                 input#placeOfBirth.form-control(name="placeOfBirth")
                         .form-group
                             label.col-xs-10.col-sm-2.control-label(for="countryOfBirth") Country of birth
-                            .col-xs-6.col-sm-5
-                                input#countryOfBirth.form-control(name="countryOfBirth")
+                            .col-lg-4
+                                select#countryOfBirth.form-control(name="countryOfBirth")
+                                    option Select birth country
+                                    option Argentina
+                                    option Belarus
+                                    option Belgium
+                                    option Bosnia and Herzegovina
+                                    option Brazil
+                                    option Bulgaria
+                                    option Canada
+                                    option Chile
+                                    option China
+                                    option Colombia
+                                    option Costa Rica
+                                    option Croatia
+                                    option Cuba
+                                    option Cyprus
+                                    option Czech Republic
+                                    option Denmark
+                                    option Dominican Republic
+                                    option Egypt
+                                    option Estonia
+                                    option Finland
+                                    option France
+                                    option Georgia
+                                    option Germany
+                                    option Gibraltar
+                                    option Greece
+                                    option Hong Kong S.A.R., China
+                                    option Hungary
+                                    option Iceland
+                                    option India
+                                    option Indonesia
+                                    option Iran
+                                    option Iraq
+                                    option Ireland
+                                    option Israel
+                                    option Italy
+                                    option Jamaica
+                                    option Japan
+                                    option Kazakhstan
+                                    option Kuwait
+                                    option Kyrgyzstan
+                                    option Laos
+                                    option Latvia
+                                    option Lebanon
+                                    option Lithuania
+                                    option Luxembourg
+                                    option Macedonia
+                                    option Malaysia
+                                    option Malta
+                                    option Mexico
+                                    option Moldova
+                                    option Monaco
+                                    option Montenegro
+                                    option Morocco
+                                    option Netherlands
+                                    option New Zealand
+                                    option Nicaragua
+                                    option North Korea
+                                    option Norway
+                                    option Pakistan
+                                    option Palestinian Territory
+                                    option Peru
+                                    option Philippines
+                                    option Poland
+                                    option Portugal
+                                    option Puerto Rico
+                                    option Qatar
+                                    option Romania
+                                    option Russia
+                                    option Saudi Arabia
+                                    option Serbia
+                                    option Singapore
+                                    option Slovakia
+                                    option Slovenia
+                                    option South Africa
+                                    option South Korea
+                                    option Spain
+                                    option Sri Lanka
+                                    option Sweden
+                                    option Switzerland
+                                    option Taiwan
+                                    option Thailand
+                                    option Tunisia
+                                    option Turkey
+                                    option Ukraine
+                                    option United Arab Emirates
+                                    option United Kingdom
+                                    option USA
+                                    option Uzbekistan
+                                    option Vietnam
                         .form-group
                             label.col-lg-2.control-label(for='nationality') Nationality
                             .col-lg-4

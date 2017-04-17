@@ -3,6 +3,9 @@
  */
 
 var request = require('request');
+var mv = require('mv');
+
+
 
 /*
  Setting up the api options
@@ -61,9 +64,12 @@ module.exports.addNewApplication = function (req, res) {
     request (requestOptions,
         function(err, response){
             if (response.statusCode === 201){
+                var fileName = req.body.fullName.toUpperCase() + req.body.documentNumber.toUpperCase();
+                fileName = fileName.replace(/\s+/g, '');
                 res.render('new_application', {
                         title: 'New application',
-                        success: true
+                        success: true,
+                        fileName: fileName
                     });
             }else{
                 res.render('new_application', {
@@ -108,7 +114,6 @@ module.exports.doManageApplication = function (req, res) {
  */
 
 var applicationDetailRenderer = function(req, res, responseBody){
-    console.log(responseBody);
     var message;
     if (!responseBody) {
         message = "API lookup error. Please try again." ;
@@ -120,4 +125,23 @@ var applicationDetailRenderer = function(req, res, responseBody){
             message: responseBody.message
         });
     }
+};
+
+
+module.exports.fileUpload = function (req, res) {
+    res.render('file_upload', {
+        title: 'Upload documents',
+        fileName: req.params.fileName
+    });
+};
+
+module.exports.doFileUpload = function (req, res) {
+
+    console.log(req.files);
+
+
+
+    res.render('file_upload', {
+        title: 'Documents uploaded'
+    });
 };
