@@ -7,7 +7,7 @@ var ctrlOthers = require('../controllers/others');
 
 var uploading = multer({
     dest: './public/temp',
-    limits: {fileSize: 10000000, files:2}
+    limits: {fileSize: 10000000, files:3}
 });
 
 /**
