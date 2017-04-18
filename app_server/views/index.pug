@@ -1,9 +1,10 @@
 extends layout
 
 block content
-  h2= title
-  p #{information}
-  .container
-
-    a#main-button.btn.btn-primary(href='/application/new') START APPLICATION
+    h2= title
+    p #{information}
+    .container
+        .applicationProcess
+            img(src='/images/application_process.png', alt='application process')
+        a#main-button.btn.btn-primary(href='/application/new') START APPLICATION
 

@@ -14,17 +14,12 @@ body {
     margin-bottom: 1em;
 }
 
+.applicationProcess{
+    padding-top: 3em;
+    padding-left: 3em;
+    padding-bottom: 3em;
 
-a {
-  color: #000000;
-}
-
-p {
-  color: #000000;
-}
-
-h2 {
-  color: #000000;
+    padding:;
 }
 
 #main-button {
