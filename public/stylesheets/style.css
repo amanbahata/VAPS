@@ -1,6 +1,12 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 25px 50px 50px;
+
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+header{
+    padding-bottom: 1.5em;
+    padding-left: 1em;
 }
 
 .headerLogo img{
@@ -18,8 +24,6 @@ body {
     padding-top: 3em;
     padding-left: 3em;
     padding-bottom: 3em;
-
-    padding:;
 }
 
 #main-button {
