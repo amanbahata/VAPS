@@ -5,6 +5,10 @@ block content
     .panel.panel-info
         .panel-body
             //img(src= "public/uploads/ARIAPUZOER565565/travelDocPhoto.png")
+    .btn-group.pull-right
+        a.btn.btn-success(href='#') APPROVE REQUEST
+    .btn-group.pull-right
+        a.btn.btn-primary(href='#') DENY REQUEST
     .panel.panel-info
         .panel-heading
             h3.panel-title #{application.title} &nbsp; &nbsp; #{application.full_name}
@@ -14,29 +18,83 @@ block content
             -var docexpiry = (application.document_expiry_date).substring(0,10)
             -var appDate = (application.application_date).substring(0,10)
             table.table.table-striped.table-hover
-
+                thead
+                    tr
+                        th Ref. number:
+                        th Application date:
+                        th Application status:
+                        th Date of birth:
+                        th Place of birth:
                 tbody
                     tr
-                        td.h4 ref. number : #{application.reference_number}
-                        td.h4 application date: #{appDate}
-                        td.h4 ref. number : #{application.status}
+                        td.h5 #{application.reference_number}
+                        td.h5 #{appDate}
+                        td.h5 #{application.assessment_status}
+                        td.h5 #{dob}
+                        td.h5 #{application.country_of_birth}
+                thead
                     tr
-                        td.h4 date of birth: &nbsp; #{dob}
-                        td.h4 place of birth: &nbsp; #{application.place_of_birth}
-                        td.h4 country of birth: &nbsp; #{application.country_of_birth}
+                        td Country of birth:
+                        td Nationality:
+                        td Current Address:
+                        td Country:
+                        td Contact number:
+                tbody
                     tr
-                        td.h4 nationality: &nbsp; #{application.nationality}
-                        td.h4 address: &nbsp; #{application.home_address} , &nbsp; #{application.city} , &nbsp; #{application.postcode}
-                        td.h4 country: &nbsp; #{application.country}
+                        td.h5 #{application.country_of_birth}
+                        td.h5 #{application.nationality}
+                        td.h5 #{application.home_address} , &nbsp; #{application.city} , &nbsp; #{application.postcode}
+                        td.h5 #{application.country}
+                        td.h5 #{application.contact_no}
+
+                thead
                     tr
-                        td.h4 contact number: #{application.contact_no}
-                        td.h4 email: #{application.email}
-                        td.h4 occupation: #{application.occupation}
+                        td email:
+                        td Occupation:
+                        td Document type:
+                        td Document number:
+                        td Document date of issue:
+                tbody
                     tr
-                        td.h4 document type: #{application.document_type}
-                        td.h4 document number: #{application.document_number}
-                        td.h4 document date of issue: #{issueDate}
+                        td.h5 #{application.email}
+                        td.h5 #{application.occupation}
+                        td.h5 #{application.document_type}
+                        td.h5 #{application.document_number}
+                        td.h5 #{issueDate}
+                thead
                     tr
-                        td.h4 document country of issue: #{application.document_country_of_issue}
-                        td.h4 document expiry date: #{docexpiry}
-                        td.h4 contact address in ethiopia: #{application.contact_address_in_ethiopia}
+                        td Document expiry:
+                        td Document country of issue:
+                        td Contact address:
+                tbody
+                    tr
+                        td.h5 #{application.document_country_of_issue}
+                        td.h5 #{application.contact_address_in_ethiopia}
+                        td.h5 #{docexpiry}
+
+
+                //tbody
+                //    tr
+                //        td.h4 ref. number : #{application.reference_number}
+                //        td.h4 application date: #{appDate}
+                //        td.h4 ref. number : #{application.status}
+                //    tr
+                //        td.h4 date of birth: &nbsp; #{dob}
+                //        td.h4 place of birth: &nbsp; #{application.place_of_birth}
+                //        td.h4 country of birth: &nbsp; #{application.country_of_birth}
+                //    tr
+                //        td.h4 nationality: &nbsp; #{application.nationality}
+                //        td.h4 address: &nbsp; #{application.home_address} , &nbsp; #{application.city} , &nbsp; #{application.postcode}
+                //        td.h4 country: &nbsp; #{application.country}
+                //    tr
+                //        td.h4 contact number: #{application.contact_no}
+                //        td.h4 email: #{application.email}
+                //        td.h4 occupation: #{application.occupation}
+                //    tr
+                //        td.h4 document type: #{application.document_type}
+                //        td.h4 document number: #{application.document_number}
+                //        td.h4 document date of issue: #{issueDate}
+                //    tr
+                //        td.h4 document country of issue: #{application.document_country_of_issue}
+                //        td.h4 document expiry date: #{docexpiry}
+                //        td.h4 contact address in ethiopia: #{application.contact_address_in_ethiopia}

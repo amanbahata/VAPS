@@ -20,10 +20,10 @@ block content
                         th DATE OF BIRTH
                         th DOCUMENT NUMBER
                 tbody
-                    - for (var i = 1; i < applications.length; ++i)
+                    - for (var i = 0; i < applications.length; ++i)
                        -var dob = (applications[i].date_of_birth).substring(0,10)
                         tr
-                            td=i
+                            td=i+1
                             td
                                 a(href="/users/applications/" + applications[i].reference_number) #{applications[i].reference_number}
                             td #{applications[i].full_name}
