@@ -68,6 +68,7 @@ module.exports.openApplication = function (req, res) {
 
 var renderApplication = function(req, res, responseBody) {
     var message;
+    var photosExist = false;
 
     console.log(responseBody);
 
@@ -81,6 +82,7 @@ var renderApplication = function(req, res, responseBody) {
     }
     res.render('application_detail', {
         title: 'VAPS',
-        application: responseBody[0]
+        application: responseBody[0],
+        photoMessage: photosExist
     });
 };

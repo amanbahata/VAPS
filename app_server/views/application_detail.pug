@@ -2,12 +2,19 @@
 
 extends layout1
 block content
-    .panel.panel-info
-        .panel-body
-            .imagesDoc
-                    img(src= "/uploads/" + application.full_name.replace(/ +/g, "") + application.document_number + "/travelDocPhoto.png" , height="300px")
-                    img(src= "/uploads/" + application.full_name.replace(/ +/g, "") + application.document_number + "/supportingDocument1.png" , height="300px")
-                    img(src= "/uploads/" + application.full_name.replace(/ +/g, "") + application.document_number + "/supportingDocument2.png" , height="300px")
+    #{photoMessage}
+        .panel.panel-info
+            if photoMessage
+                .panel-body
+                    .imagesDoc
+                            img(src= "/uploads/" + application.full_name.replace(/ +/g, "") + application.document_number + "/travelDocPhoto.png" , height="300px")
+                            img(src= "/uploads/" + application.full_name.replace(/ +/g, "") + application.document_number + "/supportingDocument1.png" , height="300px")
+                            img(src= "/uploads/" + application.full_name.replace(/ +/g, "") + application.document_number + "/supportingDocument2.png" , height="300px")
+            else
+                .panel-body
+                    .alert.alert-dismissible.alert-danger
+                        button.close(type='button', data-dismiss='alert')
+                        strong ALERT : NO REQUESTED DOCUMENTS UPLOADED
     .btn-group.pull-right
         a.btn.btn-success(href='#') APPROVE REQUEST
     .btn-group.pull-right
