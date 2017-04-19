@@ -3,10 +3,12 @@
 extends layout1
 block content
     .panel.panel-info
+        .panel-body
+            //img(src= "public/uploads/ARIAPUZOER565565/travelDocPhoto.png")
+    .panel.panel-info
         .panel-heading
             h3.panel-title #{application.title} &nbsp; &nbsp; #{application.full_name}
         .panel-body
-            img(src= "../public/uploads/" + application.full_name+application.document_number + "/travelDocPhoto.png")
             -var dob = (application.date_of_birth).substring(0,10)
             -var issueDate = (application.document_date_of_issue).substring(0,10)
             -var docexpiry = (application.document_expiry_date).substring(0,10)
