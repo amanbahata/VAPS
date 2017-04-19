@@ -78,7 +78,7 @@ var renderApplication = function(req, res, responseBody) {
             message = "No open visa applications found";
         }
     }
-    res.render('users_home', {
+    res.render('application_detail', {
         title: 'VAPS'
     });
 };
