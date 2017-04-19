@@ -3,6 +3,7 @@
  */
 var request = require('request');
 
+
 /*
  Setting up the api options
  */
@@ -52,7 +53,7 @@ var listApplicationsRenderer = function(req, res, responseBody) {
 
 module.exports.openApplication = function (req, res) {
     var requestOptions, path;
-    path = '/api/applications/' + req.params.reference_number;
+    path = '/api/applications/' + req.params.referenceNumber;
     requestOptions = {
         url : apiOptions.server + path,
         method : "GET",
@@ -79,6 +80,7 @@ var renderApplication = function(req, res, responseBody) {
         }
     }
     res.render('application_detail', {
-        title: 'VAPS'
+        title: 'VAPS',
+        application: responseBody[0]
     });
 };

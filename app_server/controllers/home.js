@@ -5,6 +5,7 @@
 var request = require('request');
 var mv = require('mv');
 var mailer = require('../communication/application_notification_mailer');
+var fs = require('fs');
 
 
 
@@ -144,13 +145,11 @@ module.exports.fileUpload = function (req, res) {
 };
 
 module.exports.doFileUpload = function (req, res) {
-
-    console.log(req.files);
     var success = true;
 
     for (var i = 0; i < req.files.length; i++) {
         var sourceFile =  req.files[i].path;
-        var destFile = 'public/uploads/' + req.params.fileName + '/' + req.files[i].fieldname;
+        var destFile = 'public/uploads/' + req.params.fileName + '/' + req.files[i].fieldname+'.png';
         mv(sourceFile, destFile, {mkdirp: true}, function (err) {
             console.log(err);
             if (err){

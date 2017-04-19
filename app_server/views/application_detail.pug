@@ -2,3 +2,39 @@
 
 extends layout1
 block content
+    .panel.panel-info
+        .panel-heading
+            h3.panel-title #{application.title} &nbsp; &nbsp; #{application.full_name}
+        .panel-body
+            img(src= "../public/uploads/" + application.full_name+application.document_number + "/travelDocPhoto.png")
+            -var dob = (application.date_of_birth).substring(0,10)
+            -var issueDate = (application.document_date_of_issue).substring(0,10)
+            -var docexpiry = (application.document_expiry_date).substring(0,10)
+            -var appDate = (application.application_date).substring(0,10)
+            table.table.table-striped.table-hover
+
+                tbody
+                    tr
+                        td.h4 ref. number : #{application.reference_number}
+                        td.h4 application date: #{appDate}
+                        td.h4 ref. number : #{application.status}
+                    tr
+                        td.h4 date of birth: &nbsp; #{dob}
+                        td.h4 place of birth: &nbsp; #{application.place_of_birth}
+                        td.h4 country of birth: &nbsp; #{application.country_of_birth}
+                    tr
+                        td.h4 nationality: &nbsp; #{application.nationality}
+                        td.h4 address: &nbsp; #{application.home_address} , &nbsp; #{application.city} , &nbsp; #{application.postcode}
+                        td.h4 country: &nbsp; #{application.country}
+                    tr
+                        td.h4 contact number: #{application.contact_no}
+                        td.h4 email: #{application.email}
+                        td.h4 occupation: #{application.occupation}
+                    tr
+                        td.h4 document type: #{application.document_type}
+                        td.h4 document number: #{application.document_number}
+                        td.h4 document date of issue: #{issueDate}
+                    tr
+                        td.h4 document country of issue: #{application.document_country_of_issue}
+                        td.h4 document expiry date: #{docexpiry}
+                        td.h4 contact address in ethiopia: #{application.contact_address_in_ethiopia}
