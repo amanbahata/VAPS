@@ -84,26 +84,15 @@ var renderApplication = function(req, res, responseBody) {
                         application: responseBody[0],
                         photoMessage: response
                     });
-                }
-                if (!stats.isDirectory()) {
-                    // This isn't a directory!
-                    callback(new Error('uploads is not a directory!'));
-                }else{
-                    response = true;
-                    res.render('application_detail', {
-                        title: 'VAPS',
-                        application: responseBody[0],
-                        photoMessage: response
-                    });
-
-                }
+                }else {
+                        response = true;
+                        res.render('application_detail', {
+                            title: 'VAPS',
+                            application: responseBody[0],
+                            photoMessage: response
+                        });
+                    }
             });
         }
     }
-
-    // res.render('application_detail', {
-    //     title: 'VAPS',
-    //     application: responseBody[0],
-    //     photoMessage: response
-    // });
 };
