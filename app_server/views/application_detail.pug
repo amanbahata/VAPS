@@ -2,13 +2,13 @@
 
 extends layout1
 block content
-    #{photoMessage}
-        .panel.panel-info
+    .panel.panel-info
+        #{photoMessage}
             if photoMessage
                 .panel-body
                     .imagesDoc
+                            img(src= "/uploads/" + application.full_name.replace(/ +/g, "") + application.document_number + "/photo.png" , height="300px")
                             img(src= "/uploads/" + application.full_name.replace(/ +/g, "") + application.document_number + "/travelDocPhoto.png" , height="300px")
-                            img(src= "/uploads/" + application.full_name.replace(/ +/g, "") + application.document_number + "/supportingDocument1.png" , height="300px")
                             img(src= "/uploads/" + application.full_name.replace(/ +/g, "") + application.document_number + "/supportingDocument2.png" , height="300px")
             else
                 .panel-body

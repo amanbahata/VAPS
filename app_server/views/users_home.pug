@@ -12,23 +12,29 @@ block content
                         span.badge #{applications.length}
         .panel-body
             table.table.table-striped.table-hover
-                thead
-                    tr
-                        th #
-                        th REFERENCE NUMBER
-                        th FULL NAME
-                        th DATE OF BIRTH
-                        th DOCUMENT NUMBER
-                tbody
-                    - for (var i = 0; i < applications.length; ++i)
-                       -var dob = (applications[i].date_of_birth).substring(0,10)
+                if applications.length> 0
+                    thead
                         tr
-                            td=i+1
-                            td
-                                a(href="/users/applications/" + applications[i].reference_number) #{applications[i].reference_number}
-                            td #{applications[i].full_name}
-                            td #{dob}
-                            td #{applications[i].document_number}
+                            th #
+                            th REFERENCE NUMBER
+                            th FULL NAME
+                            th DATE OF BIRTH
+                            th DOCUMENT NUMBER
+                    tbody
+
+                            - for (var i = 0; i < applications.length; ++i)
+                               -var dob = (applications[i].date_of_birth).substring(0,10)
+                                tr
+                                    td=i+1
+                                    td
+                                        a(href="/users/applications/" + applications[i].reference_number) #{applications[i].reference_number}
+                                    td #{applications[i].full_name}
+                                    td #{dob}
+                                    td #{applications[i].document_number}
+                else
+                    tr
+                        td
+                        td THERE ARE NO OPEN APPLICATIONS TO DISPLAY
 
 
 

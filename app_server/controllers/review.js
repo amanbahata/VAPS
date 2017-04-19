@@ -2,6 +2,7 @@
  * Created by aman1 on 18/04/2017.
  */
 var request = require('request');
+var fs = require('fs');
 
 
 /*
@@ -30,10 +31,6 @@ module.exports.listApplications = function (req, res) {
 
 var listApplicationsRenderer = function(req, res, responseBody) {
     var message;
-
-    var date = responseBody[0].date_of_birth;
-    date = date.substring(0,10);
-    console.log(date);
 
 
     if (!(responseBody instanceof Array)) {
@@ -68,21 +65,45 @@ module.exports.openApplication = function (req, res) {
 
 var renderApplication = function(req, res, responseBody) {
     var message;
-    var photosExist = false;
-
-    console.log(responseBody);
-
+    var response = false;
 
     if (!(responseBody instanceof Array)) {
         message = "API lookup error";
     } else {
         if (!responseBody.length > 0) {
             message = "No open visa applications found";
+        } else {
+                var foldName = (responseBody[0].full_name).replace(/ +/g, "") + responseBody[0].document_number;
+                fs.stat("public/uploads/" + foldName, function (err, stats) {
+                    if (err) {
+                    // Directory doesn't exist or something.
+                    console.log('Folder doesn\'t exist');
+                    response = false;
+                    res.render('application_detail', {
+                        title: 'VAPS',
+                        application: responseBody[0],
+                        photoMessage: response
+                    });
+                }
+                if (!stats.isDirectory()) {
+                    // This isn't a directory!
+                    callback(new Error('uploads is not a directory!'));
+                }else{
+                    response = true;
+                    res.render('application_detail', {
+                        title: 'VAPS',
+                        application: responseBody[0],
+                        photoMessage: response
+                    });
+
+                }
+            });
         }
     }
-    res.render('application_detail', {
-        title: 'VAPS',
-        application: responseBody[0],
-        photoMessage: photosExist
-    });
+
+    // res.render('application_detail', {
+    //     title: 'VAPS',
+    //     application: responseBody[0],
+    //     photoMessage: response
+    // });
 };
