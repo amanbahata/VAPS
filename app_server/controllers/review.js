@@ -35,31 +35,29 @@ module.exports.listApplications = function (req, res) {
 };
 
 var listApplicationsRenderer = function(req, res, responseBody) {
-    var message;
-    var response = false;
-    var payload = req.query.token;
-    jwt.verify(payload, process.env.JWT_SECRET, function (err, decoded) {
-        var username = decoded.name;
-            if (!(responseBody instanceof Array)) {
-                message = "API lookup error";
-            } else {
-                if (!responseBody.length > 0) {
-                    message = "No open visa applications found";
-                }
+        var message;
+        var response = false;
+        var payload = req.query.token;
+        var decode = jwt.verify(payload, process.env.JWT_SECRET);
+        var username = decode.name;
+        if (!(responseBody instanceof Array)) {
+            message = "API lookup error";
+        } else {
+            if (!responseBody.length > 0) {
+                message = "No open visa applications found";
             }
-            res.render('users_home', {
-                title: 'VAPS',
-                applications: responseBody,
-                message: message,
-                token: req.query.token,
-                userName: username
-            });
-    });
+        }
+        res.render('users_home', {
+            title: 'VAPS',
+            applications: responseBody,
+            message: message,
+            token: req.query.token,
+            userName: username
+        });
 };
 
 
 module.exports.openApplication = function (req, res) {
-
     var requestOptions, path;
     path = '/api/applications/' + req.params.referenceNumber;
     requestOptions = {

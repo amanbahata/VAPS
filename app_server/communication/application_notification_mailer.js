@@ -20,8 +20,8 @@ module.exports.sendEmail = function(email, applicantName, applicationRefNumber) 
 
     var html = 'Thank yo for applying for a TOURIST visa at the Ethiopian consulate.' +
         'We have included the following information for you to check your visa status.' +
-        'APPLICANT NAME:' + applicantName +
-        'APPLICATION REFERENCE CODE: ' + applicationRefNumber;
+        '  APPLICANT NAME:' + applicantName +
+        '  APPLICATION REFERENCE CODE: ' + applicationRefNumber;
 
     var mailOptions = {
         from:  user_email,                                                //Senders' email

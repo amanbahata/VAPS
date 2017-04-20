@@ -68,7 +68,7 @@ module.exports.addNewApplication = function (req, res) {
         function(err, response){
             if (response.statusCode === 201){
                 console.log(response);
-                mailer.sendEmail(response.body.email, response.body.fullName, response.body.reference_number);
+                mailer.sendEmail(response.body.email, req.body.fullName, response.body.reference_number);
                 var fileName = req.body.fullName.toUpperCase() + req.body.documentNumber.toUpperCase();
                 fileName = fileName.replace(/\s+/g, '');
                 res.render('new_application', {
