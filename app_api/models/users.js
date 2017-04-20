@@ -47,7 +47,7 @@ userSchema.methods.validatePassword = function(password) {
  Generation of a jason web token that expires every seven days
  */
 
-userSchema.methods.generateToken = function(){
+userSchema.methods.generateJWT = function(){
     var expiryDate = new Date();
     expiryDate.setDate(expiryDate.getDate() + 1);
     return jwt.sign({
@@ -56,3 +56,6 @@ userSchema.methods.generateToken = function(){
         name: this.name,
         exp: parseInt(expiryDate.getTime()/1000)}, process.env.JWT_SECRET);   //sends this secret word for the use of the hashing algorithm
 };
+
+
+mongoose.model('User', userSchema);

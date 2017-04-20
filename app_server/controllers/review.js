@@ -16,11 +16,16 @@ var apiOptions = {
 
 module.exports.listApplications = function (req, res) {
     var requestOptions, path;
+
     path = '/api/applications/open';
     requestOptions = {
         url : apiOptions.server + path,
         method : "GET",
-        json: {}
+        json: {},
+        headers: {
+            "payload" : req.query.token
+        }
+
     };
     request (requestOptions,
         function(err, response, body){
@@ -32,6 +37,7 @@ module.exports.listApplications = function (req, res) {
 var listApplicationsRenderer = function(req, res, responseBody) {
     var message;
 
+     console.log(responseBody);
 
     if (!(responseBody instanceof Array)) {
         message = "API lookup error";
@@ -95,4 +101,40 @@ var renderApplication = function(req, res, responseBody) {
             });
         }
     }
+};
+
+
+module.exports.login = function (req, res) {
+    res.render('login', {
+        title: 'VAPS',
+        pageHeader: {title: 'VAPS'}
+    });
+};
+
+module.exports.doLogin = function (req, res) {
+    var requestOptions, path, postData;
+    path = '/api/login';
+    postData = {
+        email: req.body.email,
+        password: req.body.password
+    };
+    requestOptions = {
+        url : apiOptions.server + path,
+        method : "POST",
+        json: postData
+    };
+    request (requestOptions,
+        function(err, response){
+            if (response.statusCode === 200){
+                var token = response.body.token;
+                setTimeout(function(){res.redirect('/users?token=' + token)}, 3000);
+            }else{
+                res.render('login',{
+                    title:'Login',
+                    pageHeader: {title: 'Login'},
+                    message : 'invalid email or password.'
+                });
+            }
+        }
+    );
 };

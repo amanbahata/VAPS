@@ -1,0 +1,26 @@
+//Created by aman1 on 20/04/2017.
+doctype html
+html
+    head
+        link(href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css", rel="stylesheet", integrity="sha384-Xqcy5ttufkC3rBa8EdiAyA1VgOGrmel2Y+wxm4K3kI3fcjTWlDWrlnxyD6hOi3PF", crossorigin="anonymous")
+        link(href='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', rel= 'jquery')
+        link(href='/stylesheets/style1.css', rel='stylesheet')
+        title= title
+    body
+        block content
+            .row.page-header
+                .col-lg-12
+                    h3= pageHeader.title
+            .container
+                .row
+                    .col-sm-6.col-md-4.col-md-offset-4
+                        .account-wall
+                            form( action='', method='POST')
+                                input(type='text', name='email' class='form-control', placeholder='Email', required, autofocus)
+                                input(type='password', name='password' class='form-control', placeholder='Password', required)
+                                button(class='btn btn-lg btn-primary btn-block', type='submit') Sign in
+                                span.clearfix
+                        //a(href='/register', class='text-center new-account') Create an account
+                        #message
+                        if message
+                            h1.text-center.error-message #{message}

@@ -4,6 +4,10 @@
 
 var mongoose = require('mongoose');
 var Applic = mongoose.model('Application');
+var jwt = require('jsonwebtoken');
+
+
+
 
 var sendJasonResponse = function (res, status, content) {
     res.status(status);
@@ -16,17 +20,19 @@ var sendJasonResponse = function (res, status, content) {
  * @param res
  */
 module.exports.listApplicationsOpen = function (req, res) {
-    Applic.find({'open': true},
-        function (err, applications) {
-            if (!applications || applications.length < 1 ){
-                sendJasonResponse(res, 400, {"message" : "No open applications found"});
-            }else if (err) {
-                sendJasonResponse(res, 400, err);
-            }else{
-                sendJasonResponse(res, 200, applications);
-            }
 
-        });
+    getUser(req, res, function (req, res, userName) {
+        Applic.find({'open': true},
+            function (err, applications) {
+                if (!applications || applications.length < 1) {
+                    sendJasonResponse(res, 400, {"message": "No open applications found"});
+                } else if (err) {
+                    sendJasonResponse(res, 400, err);
+                } else {
+                    sendJasonResponse(res, 200, applications);
+                }
+            });
+         });
 };
 
 
@@ -36,24 +42,25 @@ module.exports.listApplicationsOpen = function (req, res) {
  * @param res
  */
 module.exports.applicationsReadOne = function (req, res) {
-    if (req.params && req.params.referenceNumber){
-        Applic
-            .find({'reference_number' : req.params.referenceNumber},
-                function (err, application) {
-                    if (!application){
-                        sendJasonResponse(res, 404, {"message" : "application not found"});
-                    }else if (err) {
-                        sendJasonResponse(res, 400, err);
-                    }else{
-                        sendJasonResponse(res, 200, application);
+    getUser(req, res, function (req, res, userName) {
+        if (req.params && req.params.referenceNumber){
+            Applic
+                .find({'reference_number' : req.params.referenceNumber},
+                    function (err, application) {
+                        if (!application){
+                            sendJasonResponse(res, 404, {"message" : "application not found"});
+                        }else if (err) {
+                            sendJasonResponse(res, 400, err);
+                        }else{
+                            sendJasonResponse(res, 200, application);
+                        }
                     }
-                }
-            );
-    }else{
-        sendJasonResponse(res, 404, {
-            "message" : "Not found, reference number required"
-        });
-    }
+                );
+        }else{
+            sendJasonResponse(res, 404, {
+                "message" : "Not found, reference number required"
+            });
+        }
 
 };
 
@@ -182,3 +189,32 @@ module.exports.applicationCheck = function (req, res) {
     }
 
 };
+
+var User = mongoose.model('User');
+var getUser = function (req, res, callback) {
+
+    if (req.headers && req.headers.payload){
+        var payload = req.headers.payload;
+        var decode = jwt.verify(payload, process.env.JWT_SECRET);
+        var email = decode.email;
+        User
+            .findOne({email: email})
+            .exec(function (err, user) {
+                if(!user){
+                    sendJsonResponse(res, 404,{"message" : "User not found"});
+                    return;
+                }else if (err){
+                    console.log(err);
+                    sendJsonResponse(res, 404, err);
+                    return;
+                }
+                callback(req, res, user.name);
+            });
+    }else {
+        sendJsonResponse(res, 404, {"message" : "User not found"});
+        return;
+    }
+
+};
+
+

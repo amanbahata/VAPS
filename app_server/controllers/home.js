@@ -121,7 +121,7 @@ module.exports.doManageApplication = function (req, res) {
 var applicationDetailRenderer = function(req, res, responseBody, response){
     var message;
     console.log(responseBody);
-    if (!responseBody[0] || response.statusCode == 404) {
+    if (!responseBody[0] || response.statusCode === 404) {
         message = "API lookup error. Please try again." ;
         res.render('manage_applications', {
             form: false,
