@@ -3,7 +3,7 @@
  */
 var request = require('request');
 var fs = require('fs');
-
+var jwt = require('jsonwebtoken');
 
 /*
  Setting up the api options
@@ -36,31 +36,40 @@ module.exports.listApplications = function (req, res) {
 
 var listApplicationsRenderer = function(req, res, responseBody) {
     var message;
+    var payload = req.query.token;
+    // verify a token symmetric
+    jwt.verify(payload, process.env.JWT_SECRET, function (err, decoded) {
+            var username = decoded.name;
 
-     console.log(responseBody);
-
-    if (!(responseBody instanceof Array)) {
-        message = "API lookup error";
-    } else {
-        if (!responseBody.length > 0) {
-            message = "No open visa applications found";
-        }
-    }
-    res.render('users_home', {
-        title: 'VAPS',
-        applications: responseBody,
-        message:message
+            if (!(responseBody instanceof Array)) {
+                message = "API lookup error";
+            } else {
+                if (!responseBody.length > 0) {
+                    message = "No open visa applications found";
+                }
+            }
+            res.render('users_home', {
+                title: 'VAPS',
+                applications: responseBody,
+                message: message,
+                token: req.query.token,
+                userName: username
+            });
     });
 };
 
 
 module.exports.openApplication = function (req, res) {
+
     var requestOptions, path;
     path = '/api/applications/' + req.params.referenceNumber;
     requestOptions = {
         url : apiOptions.server + path,
         method : "GET",
-        json: {}
+        json: {},
+        headers: {
+            "payload" : req.query.token
+        }
     };
     request (requestOptions,
         function(err, response, body){
@@ -72,6 +81,9 @@ module.exports.openApplication = function (req, res) {
 var renderApplication = function(req, res, responseBody) {
     var message;
     var response = false;
+    var payload = req.query.token;
+    var decode = jwt.verify(payload, process.env.JWT_SECRET);
+    var username = decode.name;
 
     if (!(responseBody instanceof Array)) {
         message = "API lookup error";
@@ -88,14 +100,18 @@ var renderApplication = function(req, res, responseBody) {
                     res.render('application_detail', {
                         title: 'VAPS',
                         application: responseBody[0],
-                        photoMessage: response
+                        photoMessage: response,
+                        token: req.query.token,
+                        userName: username
                     });
                 }else {
                         response = true;
                         res.render('application_detail', {
                             title: 'VAPS',
                             application: responseBody[0],
-                            photoMessage: response
+                            photoMessage: response,
+                            token: req.query.token,
+                            userName: username
                         });
                     }
             });

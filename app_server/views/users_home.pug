@@ -27,7 +27,7 @@ block content
                                 tr
                                     td=i+1
                                     td
-                                        a(href="/users/applications/" + applications[i].reference_number) #{applications[i].reference_number}
+                                        a(href="/users/applications/" + applications[i].reference_number + "?token=" + token) #{applications[i].reference_number}
                                     td #{applications[i].full_name}
                                     td #{dob}
                                     td #{applications[i].document_number}

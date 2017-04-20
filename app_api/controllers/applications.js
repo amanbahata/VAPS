@@ -43,24 +43,25 @@ module.exports.listApplicationsOpen = function (req, res) {
  */
 module.exports.applicationsReadOne = function (req, res) {
     getUser(req, res, function (req, res, userName) {
-        if (req.params && req.params.referenceNumber){
+        if (req.params && req.params.referenceNumber) {
             Applic
-                .find({'reference_number' : req.params.referenceNumber},
+                .find({'reference_number': req.params.referenceNumber},
                     function (err, application) {
-                        if (!application){
-                            sendJasonResponse(res, 404, {"message" : "application not found"});
-                        }else if (err) {
+                        if (!application) {
+                            sendJasonResponse(res, 404, {"message": "application not found"});
+                        } else if (err) {
                             sendJasonResponse(res, 400, err);
-                        }else{
+                        } else {
                             sendJasonResponse(res, 200, application);
                         }
                     }
                 );
-        }else{
+        } else {
             sendJasonResponse(res, 404, {
-                "message" : "Not found, reference number required"
+                "message": "Not found, reference number required"
             });
         }
+    });
 
 };
 
@@ -70,26 +71,30 @@ module.exports.applicationsReadOne = function (req, res) {
  * @param res
  */
 module.exports.assessmentCreate = function (req, res) {
-    var referenceNumber =  req.params.referenceNumber;
-    if (referenceNumber){
-        Applic
-            .find({'reference_number' : referenceNumber})
-            .select('assessment_status assessment')
-            .exec(
-                function (err, application) {
-                     if (err) {
-                        sendJasonResponse(res, 400, err);
-                    }else{
 
-                         doAddAssessment(req, res, application);
+    getUser(req, res, function (req, res, userName) {
+
+        var referenceNumber = req.params.referenceNumber;
+        if (referenceNumber) {
+            Applic
+                .find({'reference_number': referenceNumber})
+                .select('assessment_status assessment')
+                .exec(
+                    function (err, application) {
+                        if (err) {
+                            sendJasonResponse(res, 400, err);
+                        } else {
+
+                            doAddAssessment(req, res, application);
+                        }
                     }
-                }
-            );
-    }else{
-        sendJasonResponse(res, 404, {
-            "message" : "Not found, reference number required"
-        });
-    }
+                );
+        } else {
+            sendJasonResponse(res, 404, {
+                "message": "Not found, reference number required"
+            });
+        }
+    });
 };
 
 

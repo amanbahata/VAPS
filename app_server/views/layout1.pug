@@ -19,12 +19,19 @@ html
                 #bs-example-navbar-collapse-1.collapse.navbar-collapse
                     ul.nav.navbar-nav
                         li.active
-                            a(href='/users')
+                            a(href='/users?token=' + token)
                                 | LIST APPLICATIONS
                                 span.sr-only (current)
+                        li
+                            a(href='#')
+                        li
+                            a(href='#') hello, #{userName}
 
                     ul.nav.navbar-nav.navbar-right
                         li
                             a(href='#') LOG OUT
+
+
+
         .container
             block content
