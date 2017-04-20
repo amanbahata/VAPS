@@ -36,11 +36,10 @@ module.exports.listApplications = function (req, res) {
 
 var listApplicationsRenderer = function(req, res, responseBody) {
     var message;
+    var response = false;
     var payload = req.query.token;
-    // verify a token symmetric
     jwt.verify(payload, process.env.JWT_SECRET, function (err, decoded) {
-            var username = decoded.name;
-
+        var username = decoded.name;
             if (!(responseBody instanceof Array)) {
                 message = "API lookup error";
             } else {
