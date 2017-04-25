@@ -2,23 +2,19 @@
 
 extends layout1
 block content
-    .panel.panel-info
+    .panel.panel-info.panel-body
         #{photoMessage}
             if photoMessage
-                .panel-body
-                    .imagesDoc
-                            img(src= "/uploads/" + application.full_name.replace(/ +/g, "") + application.document_number + "/photo.png" , height="300px")
-                            img(src= "/uploads/" + application.full_name.replace(/ +/g, "") + application.document_number + "/travelDocPhoto.png" , height="500px")
-                            img(src= "/uploads/" + application.full_name.replace(/ +/g, "") + application.document_number + "/supportingDocument2.png" , height="500px")
+                .imagesDoc
+                        img(src= "/uploads/" + application.full_name.replace(/ +/g, "") + application.document_number + "/photo.png" , height="300px")
+                        img(src= "/uploads/" + application.full_name.replace(/ +/g, "") + application.document_number + "/travelDocPhoto.png" , height="500px")
+                        //img(src= "/uploads/" + application.full_name.replace(/ +/g, "") + application.document_number + "/supportingDocument2.png" , height="500px")
             else
-                .panel-body
-                    .alert.alert-dismissible.alert-danger
-                        button.close(type='button', data-dismiss='alert')
-                        strong ALERT : NO REQUESTED DOCUMENTS UPLOADED
-    .btn-group.pull-right
-        a.btn.btn-success(href='#') APPROVE REQUEST
-    .btn-group.pull-right
-        a.btn.btn-primary(href='#') DENY REQUEST
+                .alert.alert-dismissible.alert-danger
+                    button.close(type='button', data-dismiss='alert')
+                    strong ALERT : NO REQUESTED DOCUMENTS UPLOADED
+
+
     .panel.panel-info
         .panel-heading
             h3.panel-title #{application.title} &nbsp; &nbsp; #{application.full_name}
