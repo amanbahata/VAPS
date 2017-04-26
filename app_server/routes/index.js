@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var multer = require('multer');
 var ctrlMain = require('../controllers/home');
-var ctrlOthers = require('../controllers/others');
 
 
 var uploading = multer({
@@ -32,7 +31,6 @@ router.get('/upload/:fileName', ctrlMain.fileUpload);
 router.post('/upload/:fileName', uploading.any() ,ctrlMain.doFileUpload);
 
 
-router.get('/others', ctrlOthers.others);
 
 
 module.exports = router;

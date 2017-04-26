@@ -71,7 +71,7 @@ module.exports.applicationsReadOne = function (req, res) {
  */
 module.exports.assessmentCreate = function (req, res) {
 
-  //  getUser(req, res, function (req, res, userName) {
+   getUser(req, res, function (req, res, userName) {
 
         var referenceNumber = req.params.referenceNumber;
         if (referenceNumber) {
@@ -93,7 +93,7 @@ module.exports.assessmentCreate = function (req, res) {
                 "message": "Not found, reference number required"
             });
         }
-   // });
+    });
 };
 
 
@@ -117,11 +117,9 @@ var doAddAssessment = function (req, res, application) {
       application[0].assessment_status = req.body.assessmentStatus;
       application[0].open = false;
       application[0].save(function(err, application){
-          var thisAssessment;
           if(err){
               sendJasonResponse(res, 400, err);
           }else{
-             // thisAssessment = application.assessment[0];
               sendJasonResponse(res, 201, application);
           }
       });
