@@ -4,12 +4,6 @@
 
 var express = require('express');
 var router = express.Router();
-// var jwt = require('express-jwt');
-// var auth = jwt({
-//     secret: process.env.JWT_SECRET,
-//     userProperty: 'payload'
-// });
-
 
 var ctrlApplications = require('../controllers/applications');
 var ctrlAuth = require('../controllers/authentication');

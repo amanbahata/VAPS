@@ -20,7 +20,6 @@ var sendJasonResponse = function (res, status, content) {
  * @param res
  */
 module.exports.listApplicationsOpen = function (req, res) {
-
     getUser(req, res, function (req, res, userName) {
         Applic.find({'open': true},
             function (err, applications) {
@@ -194,6 +193,9 @@ module.exports.applicationCheck = function (req, res) {
     }
 };
 
+/**
+ * check if a user performing actions exists in the database and that has performed login
+ */
 
 var User = mongoose.model('User');
 var getUser = function (req, res, callback) {

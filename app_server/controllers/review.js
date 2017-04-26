@@ -127,7 +127,6 @@ var renderApplication = function(req, res, responseBody) {
 };
 
 
-
 module.exports.doAssessment = function (req, res) {
     var payload = req.session.token;
     var decode = jwt.verify(payload, process.env.JWT_SECRET);
