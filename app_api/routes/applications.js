@@ -18,7 +18,7 @@ router.post('/applications/new', ctrlApplications.applicationsCreate);
 router.get('/applications/open' ,ctrlApplications.listApplicationsOpen);
 router.get('/applications/check/:referenceNumber/:documentNumber', ctrlApplications.applicationCheck);
 router.get('/applications/:referenceNumber' ,ctrlApplications.applicationsReadOne);
-router.post('/applications/:referenceNumber' ,ctrlApplications.assessmentCreate);
+router.put('/applications/:referenceNumber' ,ctrlApplications.assessmentCreate);
 
 
 router.post('/register', ctrlAuth.register);

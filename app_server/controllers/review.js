@@ -4,7 +4,7 @@
 var request = require('request');
 var fs = require('fs');
 var jwt = require('jsonwebtoken');
-
+var mailer = require('../communication/change_notification_mailer');
 /*
  Setting up the api options
  */
@@ -127,19 +127,69 @@ var renderApplication = function(req, res, responseBody) {
 };
 
 
+
 module.exports.doAssessment = function (req, res) {
-    console.log(req.body);
+    var payload = req.session.token;
+    var decode = jwt.verify(payload, process.env.JWT_SECRET);
+    var username = decode.name;
+    var requestOptions, path, postData;
+    path = '/api/applications/' + req.params.referenceNumber;
+    postData = {
+        assessor: username,
+        visaNumber: req.body.visaNumber,
+        reason: req.body.reason,
+        assessmentStatus: req.body.outcome
+    };
+    requestOptions = {
+        url : apiOptions.server + path,
+        method : "PUT",
+        json: postData
+    };
+    request (requestOptions,
+        function(err, response){
+            if (response.statusCode === 201){
+                mailer.sendEmail(response.body.email, response.body.full_name, response.body.reference_number);
+                res.redirect('/users');
 
-
+            }else{
+                res.redirect('/users');
+            }
+        }
+    );
 };
 
 
 module.exports.login = function (req, res) {
-    res.render('login', {
-        title: 'VAPS',
-        pageHeader: {title: 'VAPS'}
-    });
+    var requestOptions, path, postData;
+    path = '/api/login';
+    postData = {
+        email: req.body.email,
+        password: req.body.password
+    };
+    requestOptions = {
+        url : apiOptions.server + path,
+        method : "POST",
+        json: postData
+    };
+    request (requestOptions,
+        function(err, response){
+            if (response.statusCode === 200){
+                var token = response.body.token;
+                req.session.token = token;
+                setTimeout(function(){res.redirect('/users')}, 3000);
+            }else{
+                res.render('login',{
+                    title:'Login',
+                    pageHeader: {title: 'Login'},
+                    message : 'invalid email or password.'
+                });
+            }
+        }
+    );
 };
+
+
+
 
 module.exports.doLogin = function (req, res) {
     var requestOptions, path, postData;

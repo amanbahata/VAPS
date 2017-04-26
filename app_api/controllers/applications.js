@@ -72,19 +72,19 @@ module.exports.applicationsReadOne = function (req, res) {
  */
 module.exports.assessmentCreate = function (req, res) {
 
-    getUser(req, res, function (req, res, userName) {
+  //  getUser(req, res, function (req, res, userName) {
 
         var referenceNumber = req.params.referenceNumber;
         if (referenceNumber) {
             Applic
                 .find({'reference_number': referenceNumber})
-                .select('assessment_status assessment')
+              //  .select('assessment_status assessment open')
                 .exec(
                     function (err, application) {
                         if (err) {
                             sendJasonResponse(res, 400, err);
                         } else {
-
+                            console.log(application);
                             doAddAssessment(req, res, application);
                         }
                     }
@@ -94,7 +94,7 @@ module.exports.assessmentCreate = function (req, res) {
                 "message": "Not found, reference number required"
             });
         }
-    });
+   // });
 };
 
 
@@ -122,8 +122,8 @@ var doAddAssessment = function (req, res, application) {
           if(err){
               sendJasonResponse(res, 400, err);
           }else{
-              thisAssessment = application.assessment[0];
-              sendJasonResponse(res, 201, thisAssessment);
+             // thisAssessment = application.assessment[0];
+              sendJasonResponse(res, 201, application);
           }
       });
   }
@@ -193,6 +193,7 @@ module.exports.applicationCheck = function (req, res) {
         });
     }
 };
+
 
 var User = mongoose.model('User');
 var getUser = function (req, res, callback) {
