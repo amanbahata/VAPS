@@ -192,7 +192,6 @@ module.exports.applicationCheck = function (req, res) {
             "message" : "Not found, reference or document number required"
         });
     }
-
 };
 
 var User = mongoose.model('User');

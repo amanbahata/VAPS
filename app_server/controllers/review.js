@@ -15,29 +15,33 @@ var apiOptions = {
 
 
 module.exports.listApplications = function (req, res) {
-    var requestOptions, path;
 
-    path = '/api/applications/open';
-    requestOptions = {
-        url : apiOptions.server + path,
-        method : "GET",
-        json: {},
-        headers: {
-            "payload" : req.query.token
-        }
+    if (req.session && req.session.token) {
+        var requestOptions, path;
+        path = '/api/applications/open';
+        requestOptions = {
+            url: apiOptions.server + path,
+            method: "GET",
+            json: {},
+            headers: {
+                "payload": req.session.token
+            }
 
-    };
-    request (requestOptions,
-        function(err, response, body){
-            listApplicationsRenderer(req, res, body, response);
-        }
-    );
+        };
+        request(requestOptions,
+            function (err, response, body) {
+                listApplicationsRenderer(req, res, body, response);
+            }
+        );
+    }else{
+        res.redirect('/users/login');
+    }
 };
 
-var listApplicationsRenderer = function(req, res, responseBody) {
+var listApplicationsRenderer = function(req, res,responseBody) {
         var message;
         var response = false;
-        var payload = req.query.token;
+        var payload = req.session.token;
         var decode = jwt.verify(payload, process.env.JWT_SECRET);
         var username = decode.name;
         if (!(responseBody instanceof Array)) {
@@ -58,27 +62,33 @@ var listApplicationsRenderer = function(req, res, responseBody) {
 
 
 module.exports.openApplication = function (req, res) {
-    var requestOptions, path;
-    path = '/api/applications/' + req.params.referenceNumber;
-    requestOptions = {
-        url : apiOptions.server + path,
-        method : "GET",
-        json: {},
-        headers: {
-            "payload" : req.query.token
-        }
-    };
-    request (requestOptions,
-        function(err, response, body){
-            renderApplication(req, res, body, response);
-        }
-    );
+
+    if (req.session && req.session.token) {
+
+        var requestOptions, path;
+        path = '/api/applications/' + req.params.referenceNumber;
+        requestOptions = {
+            url: apiOptions.server + path,
+            method: "GET",
+            json: {},
+            headers: {
+                "payload": req.session.token
+            }
+        };
+        request(requestOptions,
+            function (err, response, body) {
+                renderApplication(req, res, body, response);
+            }
+        );
+    }else {
+        res.redirect('/users/login');
+    }
 };
 
 var renderApplication = function(req, res, responseBody) {
     var message;
     var response = false;
-    var payload = req.query.token;
+    var payload = req.session.token;
     var decode = jwt.verify(payload, process.env.JWT_SECRET);
     var username = decode.name;
 
@@ -117,6 +127,13 @@ var renderApplication = function(req, res, responseBody) {
 };
 
 
+module.exports.doAssessment = function (req, res) {
+    console.log(req.body);
+
+
+};
+
+
 module.exports.login = function (req, res) {
     res.render('login', {
         title: 'VAPS',
@@ -140,7 +157,8 @@ module.exports.doLogin = function (req, res) {
         function(err, response){
             if (response.statusCode === 200){
                 var token = response.body.token;
-                setTimeout(function(){res.redirect('/users?token=' + token)}, 3000);
+                req.session.token = token;
+                setTimeout(function(){res.redirect('/users')}, 3000);
             }else{
                 res.render('login',{
                     title:'Login',
@@ -150,4 +168,14 @@ module.exports.doLogin = function (req, res) {
             }
         }
     );
+};
+
+
+module.exports.doLogout = function (req, res) {
+    if (req.session && req.session.token){
+        req.session.destroy();
+        res.redirect('/users/login');
+    }else{
+        res.redirect('/users/login');
+    }
 };

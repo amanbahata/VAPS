@@ -3,17 +3,44 @@
 extends layout1
 block content
     .panel.panel-info.panel-body
+        form.form-horizontal(action="", method="post", role="form")
+            fieldset
+                legend VISA REQUEST ASSESSMENT
+                .form-group
+                    label.col-lg-2.control-label(for='assessor') Immigration officer
+                    .col-lg-10
+                        input#assessor.form-control(type='text', placeholder = 'Enter your name', name="assessor")
+                .form-group
+                    label.col-lg-2.control-label(for='visaNumber') Visa number
+                    .col-lg-10
+                        input#visaNumber.form-control(type='text', name="visaNumber",placeholder = 'Visa number')
+                .form-group
+                    label.col-lg-2.control-label(for='outcome') Request outcome
+                    .col-lg-10
+                        select#outcome.form-control(name="outcome")
+                            option SELECT ASSESSMENT
+                            option APPROVED
+                            option DENIED
+                .form-group
+                    label.col-lg-2.control-label(for='reason') Reson
+                    .col-lg-10
+                        textarea#reason.form-control(rows='3', name="reason")
+                        span.help-block
+                            | Please imput a reason for the decision you have made.
+                .form-group
+                    .col-lg-10.col-lg-offset-2
+                        button.btn.btn-primary(type='submit') Submit
         #{photoMessage}
             if photoMessage
                 .imagesDoc
                         img(src= "/uploads/" + application.full_name.replace(/ +/g, "") + application.document_number + "/photo.png" , height="300px")
                         img(src= "/uploads/" + application.full_name.replace(/ +/g, "") + application.document_number + "/travelDocPhoto.png" , height="500px")
                         //img(src= "/uploads/" + application.full_name.replace(/ +/g, "") + application.document_number + "/supportingDocument2.png" , height="500px")
+
             else
                 .alert.alert-dismissible.alert-danger
                     button.close(type='button', data-dismiss='alert')
                     strong ALERT : NO REQUESTED DOCUMENTS UPLOADED
-
 
     .panel.panel-info
         .panel-heading
