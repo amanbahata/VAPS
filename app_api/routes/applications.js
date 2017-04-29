@@ -13,7 +13,7 @@ router.get('/applications/open' ,ctrlApplications.listApplicationsOpen);
 router.get('/applications/check/:referenceNumber/:documentNumber', ctrlApplications.applicationCheck);
 router.get('/applications/:referenceNumber' ,ctrlApplications.applicationsReadOne);
 router.put('/applications/:referenceNumber' ,ctrlApplications.assessmentCreate);
-
+router.get('/reports', ctrlApplications.getData);
 
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);

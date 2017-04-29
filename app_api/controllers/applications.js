@@ -191,6 +191,33 @@ module.exports.applicationCheck = function (req, res) {
     }
 };
 
+
+/**
+ * Returns the information of the status of a single application queried by a user
+ * @param req
+ * @param res
+ */
+
+module.exports.getData = function (req, res) {
+    var d = new Date();
+    var year = d.getFullYear();
+
+         Applic
+             .find({application_date: { $lt: new Date(), $gt: new Date(year) }, // Get results from start of current day to current time.
+                "assessment_status" : "SUBMITTED"
+         },
+                 function (err, application) {
+                     if (application.length < 1){
+                         sendJasonResponse(res, 404, {"message" : "application not found"});
+                     }else if (err) {
+                         sendJasonResponse(res, 400, err);
+                     }else{
+                        sendJasonResponse(res, 200, application);
+                     }
+                 }
+             );
+};
+
 /**
  * check if a user performing actions exists in the database and that has performed login
  */

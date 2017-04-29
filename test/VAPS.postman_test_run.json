@@ -1,0 +1,659 @@
+{
+	"id": "e912c025-c109-f1ba-8a65-71fff44f928f",
+	"name": "VAPS",
+	"allTests": [],
+	"timestamp": 1493377086634,
+	"collection_id": "793a285a-251c-f334-d520-34c2acd8470d",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "0",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "793a285a-251c-f334-d520-34c2acd8470d",
+		"name": "VAPS",
+		"description": "",
+		"order": [
+			"145ab739-835e-b7f1-2dda-2aa30ed3b1a2",
+			"712a595d-82ae-e8c0-306f-fa2932680783",
+			"995577fb-56b4-a9f3-1b7a-58718d94ab35",
+			"ce31e27c-c115-6ab7-5bb6-981e00a5bef7",
+			"cfd9eea4-c541-174f-002c-d92e8af3a8bd",
+			"45ee5387-722c-94bf-74d0-5023092595c1",
+			"9d5cb08e-a07f-f839-e808-ae622fcc3724"
+		],
+		"folders": [],
+		"requests": [
+			{
+				"id": "145ab739-835e-b7f1-2dda-2aa30ed3b1a2",
+				"headers": "Content-Type: application/x-www-form-urlencoded\ntoken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OGRkMGE0MjdhM2ZhZjE3ZjE1ZmFlM2IiLCJlbWFpbCI6ImJhaGF0YWFtYW5AZ21haWwuY29tIiwic2NyZWVuTmFtZSI6ImFtYW4iLCJuYW1lIjoiYW1hbiIsImV4cCI6MTQ5MjA0MjgyOSwiaWF0IjoxNDkxNDM4MDI5fQ.tMfIrPE0hsLlT4FGX3Y-6LjZ-m7VMZEvlkJ0OG2hkzg\n",
+				"url": "http://localhost:3000/api/applications/new",
+				"pathVariables": {},
+				"preRequestScript": null,
+				"method": "POST",
+				"collectionId": "793a285a-251c-f334-d520-34c2acd8470d",
+				"data": [
+					{
+						"key": "title",
+						"value": "Mrs",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "fullName",
+						"value": "John Doe",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "dateOfBirth",
+						"value": "01/01/1999",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "placeOfBirth",
+						"value": "Khartum",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "countryOfBirth",
+						"value": "Sudan",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "nationality",
+						"value": "Sudan",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "homeAddress",
+						"value": "67 Bromley Square",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "city",
+						"value": "London",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "postcode",
+						"value": "SE151RF",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "country",
+						"value": "United Kingdom",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "contactNo",
+						"value": "45656765678",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "email",
+						"value": "dona@gmail.com",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "occupation",
+						"value": "teacher",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "documentType",
+						"value": "PASSPORT",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "documentNumber",
+						"value": "674467",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "documentDateOfIssue",
+						"value": "11/12/15",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "documentCountryOfIssue",
+						"value": "Germany",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "documentExpiryDate",
+						"value": "12/12/28",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "contactAddressInEthiopia",
+						"value": "Arat Kilo",
+						"type": "text",
+						"enabled": true
+					}
+				],
+				"dataMode": "urlencoded",
+				"name": "http://localhost:3000/api/applications/new",
+				"description": "",
+				"descriptionFormat": "html",
+				"time": 1493372339539,
+				"version": 2,
+				"responses": [],
+				"tests": null,
+				"currentHelper": "normal",
+				"helperAttributes": {}
+			},
+			{
+				"id": "45ee5387-722c-94bf-74d0-5023092595c1",
+				"headers": "Content-Type: application/x-www-form-urlencoded\n",
+				"url": "http://localhost:3000/api/login",
+				"pathVariables": {},
+				"preRequestScript": null,
+				"method": "POST",
+				"collectionId": "793a285a-251c-f334-d520-34c2acd8470d",
+				"data": [
+					{
+						"key": "email",
+						"value": "simon@gmail.com",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "password",
+						"value": "pa55word",
+						"type": "text",
+						"enabled": true
+					}
+				],
+				"dataMode": "urlencoded",
+				"name": "http://localhost:3000/api/login",
+				"description": "",
+				"descriptionFormat": "html",
+				"time": 1493372540147,
+				"version": 2,
+				"responses": [],
+				"tests": null,
+				"currentHelper": "normal",
+				"helperAttributes": {}
+			},
+			{
+				"id": "712a595d-82ae-e8c0-306f-fa2932680783",
+				"headers": "payload: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OGY5NDM3ZTM2NDI5MDM1OTQ2NWY4MmIiLCJlbWFpbCI6InNpbW9uQGdtYWlsLmNvbSIsIm5hbWUiOiJTaW1vbiBIb2xtZXMiLCJleHAiOjE0OTM0NTgzMDYsImlhdCI6MTQ5MzM3MTkwNn0.GUcTqXVY-vyE3pOKUqsboLq5xy2tyFPmsx3E2s4QMNI\n",
+				"url": "http://localhost:3000/api/applications/SyCR7aLRx",
+				"pathVariables": {},
+				"preRequestScript": null,
+				"method": "GET",
+				"collectionId": "793a285a-251c-f334-d520-34c2acd8470d",
+				"data": null,
+				"dataMode": "params",
+				"name": "http://localhost:3000/api/applications/SyCR7aLRx",
+				"description": "",
+				"descriptionFormat": "html",
+				"time": 1493372404237,
+				"version": 2,
+				"responses": [],
+				"tests": null,
+				"currentHelper": "normal",
+				"helperAttributes": {}
+			},
+			{
+				"id": "995577fb-56b4-a9f3-1b7a-58718d94ab35",
+				"headers": "payload: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OGY5NDM3ZTM2NDI5MDM1OTQ2NWY4MmIiLCJlbWFpbCI6InNpbW9uQGdtYWlsLmNvbSIsIm5hbWUiOiJTaW1vbiBIb2xtZXMiLCJleHAiOjE0OTM0NTgzMDYsImlhdCI6MTQ5MzM3MTkwNn0.GUcTqXVY-vyE3pOKUqsboLq5xy2tyFPmsx3E2s4QMNI\n",
+				"url": "http://localhost:3000/api/applications/open",
+				"pathVariables": {},
+				"preRequestScript": null,
+				"method": "GET",
+				"collectionId": "793a285a-251c-f334-d520-34c2acd8470d",
+				"data": null,
+				"dataMode": "params",
+				"name": "http://localhost:3000/api/applications/open",
+				"description": "",
+				"descriptionFormat": "html",
+				"time": 1493372415343,
+				"version": 2,
+				"responses": [],
+				"tests": null,
+				"currentHelper": "normal",
+				"helperAttributes": {}
+			},
+			{
+				"id": "9d5cb08e-a07f-f839-e808-ae622fcc3724",
+				"headers": "Content-Type: application/x-www-form-urlencoded\n",
+				"url": "http://localhost:3000/api/register",
+				"pathVariables": {},
+				"preRequestScript": null,
+				"method": "POST",
+				"collectionId": "793a285a-251c-f334-d520-34c2acd8470d",
+				"data": [
+					{
+						"key": "name",
+						"value": "aman",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "email",
+						"value": "aman@mail.com",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "password",
+						"value": "pa55word",
+						"type": "text",
+						"enabled": true
+					}
+				],
+				"dataMode": "urlencoded",
+				"name": "http://localhost:3000/api/register",
+				"description": "",
+				"descriptionFormat": "html",
+				"time": 1493372698813,
+				"version": 2,
+				"responses": [],
+				"tests": null,
+				"currentHelper": "normal",
+				"helperAttributes": {}
+			},
+			{
+				"id": "ce31e27c-c115-6ab7-5bb6-981e00a5bef7",
+				"headers": "",
+				"url": "http://localhost:3000/api/applications/check/SyCR7aLRx/ER565565",
+				"pathVariables": {},
+				"preRequestScript": null,
+				"method": "GET",
+				"collectionId": "793a285a-251c-f334-d520-34c2acd8470d",
+				"data": null,
+				"dataMode": "params",
+				"name": "http://localhost:3000/api/applications/check/SyCR7aLRx/ER565565",
+				"description": "",
+				"descriptionFormat": "html",
+				"time": 1493372426567,
+				"version": 2,
+				"responses": [],
+				"tests": null,
+				"currentHelper": "normal",
+				"helperAttributes": {}
+			},
+			{
+				"id": "cfd9eea4-c541-174f-002c-d92e8af3a8bd",
+				"headers": "payload: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OGY5NDM3ZTM2NDI5MDM1OTQ2NWY4MmIiLCJlbWFpbCI6InNpbW9uQGdtYWlsLmNvbSIsIm5hbWUiOiJTaW1vbiBIb2xtZXMiLCJleHAiOjE0OTM0NTgzMDYsImlhdCI6MTQ5MzM3MTkwNn0.GUcTqXVY-vyE3pOKUqsboLq5xy2tyFPmsx3E2s4QMNI\n",
+				"url": "http://localhost:3000/api/applications/SyCR7aLRx",
+				"pathVariables": {},
+				"preRequestScript": null,
+				"method": "PUT",
+				"collectionId": "793a285a-251c-f334-d520-34c2acd8470d",
+				"data": [
+					{
+						"key": "assessor",
+						"value": "Aman",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "visaNumber",
+						"value": "----------------",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "reason",
+						"value": "Supporting documents not found",
+						"type": "text",
+						"enabled": true
+					},
+					{
+						"key": "assessmentStatus",
+						"value": "denied",
+						"type": "text",
+						"enabled": true
+					}
+				],
+				"dataMode": "urlencoded",
+				"name": "http://localhost:3000/api/applications/SyCR7aLRx",
+				"description": "",
+				"descriptionFormat": "html",
+				"time": 1493372535263,
+				"version": 2,
+				"responses": [],
+				"tests": null,
+				"currentHelper": "normal",
+				"helperAttributes": {}
+			}
+		],
+		"timestamp": 1493372275150,
+		"synced": false,
+		"syncedFilename": "",
+		"remote_id": 0,
+		"remoteLink": "",
+		"remoteLinkUpdatedAt": null,
+		"public": false,
+		"owner": 0,
+		"subscribed": false,
+		"createdAt": 1493372275150,
+		"updatedAt": 1493372698885,
+		"write": true,
+		"isDeleted": false,
+		"published": false,
+		"favorite": false,
+		"permissions": {},
+		"syncedPermissions": {},
+		"sharedWithTeam": false
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [
+		{
+			"key": "echo_digest_realm",
+			"type": "text",
+			"value": "Users",
+			"enabled": true
+		},
+		{
+			"key": "echo_digest_nonce",
+			"type": "text",
+			"value": "bGAVJYtt8K5WcgBRs98rDLtpesqcLiLw",
+			"enabled": true
+		}
+	],
+	"results": [
+		{
+			"id": "145ab739-835e-b7f1-2dda-2aa30ed3b1a2",
+			"name": "http://localhost:3000/api/applications/new",
+			"url": "http://localhost:3000/api/applications/new",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 201,
+				"name": "Created",
+				"detail": "The request has been fulfilled and resulted in a new resource being created."
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				17
+			],
+			"allTests": [
+				{}
+			],
+			"time": 17,
+			"totalRequestTime": 17,
+			"iterationResults": {}
+		},
+		{
+			"id": "712a595d-82ae-e8c0-306f-fa2932680783",
+			"name": "http://localhost:3000/api/applications/SyCR7aLRx",
+			"url": "http://localhost:3000/api/applications/SyCR7aLRx",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				14
+			],
+			"allTests": [
+				{}
+			],
+			"time": 14,
+			"totalRequestTime": 14,
+			"iterationResults": {}
+		},
+		{
+			"id": "995577fb-56b4-a9f3-1b7a-58718d94ab35",
+			"name": "http://localhost:3000/api/applications/open",
+			"url": "http://localhost:3000/api/applications/open",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				20
+			],
+			"allTests": [
+				{}
+			],
+			"time": 20,
+			"totalRequestTime": 20,
+			"iterationResults": {}
+		},
+		{
+			"id": "ce31e27c-c115-6ab7-5bb6-981e00a5bef7",
+			"name": "http://localhost:3000/api/applications/check/SyCR7aLRx/ER565565",
+			"url": "http://localhost:3000/api/applications/check/SyCR7aLRx/ER565565",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				10
+			],
+			"allTests": [
+				{}
+			],
+			"time": 10,
+			"totalRequestTime": 10,
+			"iterationResults": {}
+		},
+		{
+			"id": "cfd9eea4-c541-174f-002c-d92e8af3a8bd",
+			"name": "http://localhost:3000/api/applications/SyCR7aLRx",
+			"url": "http://localhost:3000/api/applications/SyCR7aLRx",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 201,
+				"name": "Created",
+				"detail": "The request has been fulfilled and resulted in a new resource being created."
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				24
+			],
+			"allTests": [
+				{}
+			],
+			"time": 24,
+			"totalRequestTime": 24,
+			"iterationResults": {}
+		},
+		{
+			"id": "45ee5387-722c-94bf-74d0-5023092595c1",
+			"name": "http://localhost:3000/api/login",
+			"url": "http://localhost:3000/api/login",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				13
+			],
+			"allTests": [
+				{}
+			],
+			"time": 13,
+			"totalRequestTime": 13,
+			"iterationResults": {}
+		},
+		{
+			"id": "9d5cb08e-a07f-f839-e808-ae622fcc3724",
+			"name": "http://localhost:3000/api/register",
+			"url": "http://localhost:3000/api/register",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found",
+				"detail": "The requested resource could not be found but may be available again in the future. Subsequent requests by the client are permissible."
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				9
+			],
+			"allTests": [
+				{}
+			],
+			"time": 9,
+			"totalRequestTime": 9,
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 0,
+	"totalFail": 0,
+	"totalTime": 107,
+	"lifecycle": "done",
+	"willStop": false,
+	"requests": [
+		{
+			"name": "http://localhost:3000/api/applications/new",
+			"id": "145ab739-835e-b7f1-2dda-2aa30ed3b1a2",
+			"url": "http://localhost:3000/api/applications/new",
+			"time": 17,
+			"responseCode": {
+				"code": 201,
+				"name": "Created",
+				"detail": "The request has been fulfilled and resulted in a new resource being created."
+			},
+			"testPassFailCounts": {},
+			"gridTitles": [],
+			"gridData": [
+				[]
+			],
+			"tests": {}
+		},
+		{
+			"name": "http://localhost:3000/api/applications/SyCR7aLRx",
+			"id": "712a595d-82ae-e8c0-306f-fa2932680783",
+			"url": "http://localhost:3000/api/applications/SyCR7aLRx",
+			"time": 14,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {},
+			"gridTitles": [],
+			"gridData": [
+				[]
+			],
+			"tests": {}
+		},
+		{
+			"name": "http://localhost:3000/api/applications/open",
+			"id": "995577fb-56b4-a9f3-1b7a-58718d94ab35",
+			"url": "http://localhost:3000/api/applications/open",
+			"time": 20,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {},
+			"gridTitles": [],
+			"gridData": [
+				[]
+			],
+			"tests": {}
+		},
+		{
+			"name": "http://localhost:3000/api/applications/check/SyCR7aLRx/ER565565",
+			"id": "ce31e27c-c115-6ab7-5bb6-981e00a5bef7",
+			"url": "http://localhost:3000/api/applications/check/SyCR7aLRx/ER565565",
+			"time": 10,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {},
+			"gridTitles": [],
+			"gridData": [
+				[]
+			],
+			"tests": {}
+		},
+		{
+			"name": "http://localhost:3000/api/applications/SyCR7aLRx",
+			"id": "cfd9eea4-c541-174f-002c-d92e8af3a8bd",
+			"url": "http://localhost:3000/api/applications/SyCR7aLRx",
+			"time": 24,
+			"responseCode": {
+				"code": 201,
+				"name": "Created",
+				"detail": "The request has been fulfilled and resulted in a new resource being created."
+			},
+			"testPassFailCounts": {},
+			"gridTitles": [],
+			"gridData": [
+				[]
+			],
+			"tests": {}
+		},
+		{
+			"name": "http://localhost:3000/api/login",
+			"id": "45ee5387-722c-94bf-74d0-5023092595c1",
+			"url": "http://localhost:3000/api/login",
+			"time": 13,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {},
+			"gridTitles": [],
+			"gridData": [
+				[]
+			],
+			"tests": {}
+		},
+		{
+			"name": "http://localhost:3000/api/register",
+			"id": "9d5cb08e-a07f-f839-e808-ae622fcc3724",
+			"url": "http://localhost:3000/api/register",
+			"time": 9,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found",
+				"detail": "The requested resource could not be found but may be available again in the future. Subsequent requests by the client are permissible."
+			},
+			"testPassFailCounts": {},
+			"gridTitles": [],
+			"gridData": [
+				[]
+			],
+			"tests": {}
+		}
+	],
+	"synced": false
+}

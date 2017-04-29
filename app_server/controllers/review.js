@@ -13,6 +13,103 @@ var apiOptions = {
 };
 
 
+module.exports.showStats = function (req, res) {
+
+    var requestOptions, path;
+    path = '/api/reports';
+    requestOptions = {
+        url: apiOptions.server + path,
+        method: "GET",
+        json: {}
+        // headers: {
+        //     "payload": req.session.token
+        // }
+
+    };
+    request(requestOptions,
+        function (err, response, body) {
+            getReports(req, res, body, response);
+        }
+    );
+};
+
+/**
+ * Returns the report of the visa processing activity
+ * @param req
+ * @param res
+ * @param responseBody
+ */
+
+var getReports = function (req, res, responseBody) {
+    var message;
+    if (!(responseBody instanceof Array)) {
+        message = "API lookup error";
+    }else {
+        if (!responseBody.length > 0) {
+            message = "No data found for this period";
+        }
+    }
+    var jan = 0;
+    var feb = 0;
+    var mar = 0;
+    var apr = 0;
+    var may = 0;
+    var jun = 0;
+    var jul = 0;
+    var aug = 0;
+    var sep = 0;
+    var oct = 0;
+    var nov = 0;
+    var dec = 0;
+
+    for (var i=0; i<responseBody.length; i++){
+        var d = new Date(responseBody[i].application_date);
+        var month = parseInt((d.getMonth() + 1), 10);
+        console.log(responseBody);
+        if (month === 1) {
+            jan = jan + 1;
+        }else if (month === 2) {
+            feb = feb + 1;
+        }else if (month === 3) {
+            mar = mar + 1;
+        }else if (month === 4) {
+            apr = apr + 1;
+        }else if (month === 5) {
+            may = may  + 1;
+        }else if (month === 6) {
+            jun = jun + 1;
+        }else if (month === 7) {
+            jul = jul + 1;
+        }else if (month === 8) {
+            aug = aug + 1;
+        }else if (month === 9) {
+            sep = sep + 1;
+        }else if (month === 10) {
+            oct = oct + 1;
+        }else if (month === 11) {
+            nov = nov + 1;
+        }else if (month === 12) {
+            dec = dec + 1;
+        }
+    }
+    res.render('stats', {
+        title: 'VAPS',
+        message: message,
+        jan: jan,
+        feb: feb,
+        mar: mar,
+        apr: apr,
+        may: may,
+        jun: jun,
+        jul: jul,
+        aug: aug,
+        sep: sep,
+        oct: oct,
+        nov: nov,
+        dec: dec
+    });
+};
+
 
 module.exports.listApplications = function (req, res) {
 

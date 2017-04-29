@@ -1,0 +1,41 @@
+
+extends layout1
+block content
+    h1 #{message}
+    #chartContainer(style='height: 400px; width: 100%;')
+    script.
+            var chart = new CanvasJS.Chart("chartContainer",
+                {
+                    animationEnabled: true,
+                    title: {
+                        text: "Number of visa applications for the year 2017"
+                    },
+                    axisX: {
+                        interval: 10
+                    },
+                    data: [
+                        {
+                            color: "rgba(255,12,32,.3)",
+                            type: "column",
+                            dataPoints: [
+                                {x: 10, y: #{jan}, label: "January" },
+                                {x: 20, y: #{feb}, label: "February" },
+                                {x: 30, y: #{mar}, label: "March" },
+                                {x: 40, y: #{apr}, label: "April" },
+                                {x: 50, y: #{may}, label: "May" },
+                                {x: 60, y: #{jun}, label: "June" },
+                                {x: 70, y: #{jul}, label: "July" },
+                                {x: 80, y: #{aug}, label: "August" },
+                                {x: 90, y: #{sep}, label: "September" },
+                                {x: 100, y: #{oct}, label: "October" },
+                                {x: 110, y: #{nov}, label: "November" },
+                                {x: 120, y: #{dec}, label: "December" }
+                            ]
+                        }
+                    ]
+                });
+            chart.render();
+
+
+
+

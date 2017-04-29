@@ -9,7 +9,7 @@ router.get('/applications/:referenceNumber', ctrlMain.openApplication);
 router.post('/applications/:referenceNumber', ctrlMain.doAssessment);
 
 //report generation
-//router.get('/reports', ctrlMain.generateReport);
+router.get('/reports', ctrlMain.showStats);
 
 /**
  * Login - logout
