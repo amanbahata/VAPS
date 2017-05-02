@@ -8,8 +8,16 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var session = require('express-session');
 
+/**
+ * Require passport and the database
+ */
+
 require('./app_api/models/db');
 require('./app_api/config/passport');
+
+/**
+ * Define the routes
+ */
 
 var routes = require('./app_server/routes/index');
 var routesApi = require('./app_api/routes/applications');
@@ -18,38 +26,51 @@ var users = require('./app_server/routes/users');
 
 var app = express();
 
-// view engine setup
+/**
+ * Setup the preferred view engine
+ */
 app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'pug');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+/**
+ * Register the servises
+ */
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+/**
+ * Register the session service
+ */
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }
 }));
+/**
+ * Use the registered touts services
+ */
 app.use('/', routes);
 app.use(passport.initialize());
 app.use('/api', routesApi);
 
 app.use('/users', users);
 
-// catch 404 and forward to error handler
+/**
+ * catch 404 and forward to error handler
+ */
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-
-//error handler
+/**
+ *error handler
+ */
 app.use(function(err, req, res, next) {
     if (err.name === 'UnauthorizedError') {
         res.status(401);
@@ -57,7 +78,10 @@ app.use(function(err, req, res, next) {
     }
 });
 
-// error handler
+
+/**
+ * error handler
+ */
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
