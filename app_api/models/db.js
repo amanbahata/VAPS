@@ -2,6 +2,12 @@
  * Created by aman1 on 13/04/2017.
  */
 
+
+/**
+ * Create the database connection and listen for errors
+ * @type {*}
+ */
+
 var mongoose = require('mongoose');
 var dbURI = 'mongodb://localhost/VAPS';
 mongoose.Promise = global.Promise;
@@ -16,6 +22,10 @@ mongoose.connection.on('error', function (err) {
 mongoose.connection.on('disconnected', function () {
    console.log('Mongoose disconnected');
 });
+
+/**
+ * Import the applications and users collections
+ */
 
 require('./applications');
 require('./users');

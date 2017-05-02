@@ -6,6 +6,11 @@ var mongoose = require('mongoose');
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 
+
+/**
+ * Schema for storing users access credentials
+ */
+
 var userSchema = new mongoose.Schema({
     email: {
         type: String,
@@ -22,7 +27,7 @@ var userSchema = new mongoose.Schema({
 });
 
 
-/*
+/**
  Encryption of user passwords by first salting and hash afterwards users' password input
  */
 userSchema.methods.setPassword = function(password) {
@@ -31,7 +36,7 @@ userSchema.methods.setPassword = function(password) {
 };
 
 
-/*
+/**
  Password validation when users log in to website.
  Returns true if the hashed version of the entered password is equal to the saved hashed version
  of the password and if the user has completed the email verification
@@ -43,7 +48,7 @@ userSchema.methods.validatePassword = function(password) {
 };
 
 
-/*
+/**
  Generation of a jason web token that expires every seven days
  */
 
@@ -57,5 +62,7 @@ userSchema.methods.generateJWT = function(){
         exp: parseInt(expiryDate.getTime()/1000)}, process.env.JWT_SECRET);   //sends this secret word for the use of the hashing algorithm
 };
 
-
+/**
+ * Compile the model
+ */
 mongoose.model('User', userSchema);

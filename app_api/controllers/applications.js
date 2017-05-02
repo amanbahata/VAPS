@@ -7,7 +7,12 @@ var Applic = mongoose.model('Application');
 var jwt = require('jsonwebtoken');
 
 
-
+/**
+ * Prepare the jason response object
+ * @param res
+ * @param status
+ * @param content
+ */
 
 var sendJasonResponse = function (res, status, content) {
     res.status(status);

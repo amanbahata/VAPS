@@ -7,6 +7,9 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
 
+/**
+ * Configure passport local strategy for encryption
+ */
 passport.use(new LocalStrategy({
         usernameField: 'email'},
     function (username, password, done) {

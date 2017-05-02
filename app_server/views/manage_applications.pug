@@ -33,5 +33,9 @@ block content
             .p Reference number: #{application.reference_number}
             .p Contact email: #{application.email}
             .p Status: #{application.assessment_status}
+            -var status = application.assessment_status
+            if status === 'APPROVED'
+                .p YOUR VISA NUMBER IS : #{application.assessment.visaNumber}
+
 
 

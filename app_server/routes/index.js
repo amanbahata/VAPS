@@ -18,15 +18,21 @@ router.get('/', ctrlMain.home);
  * Applications
  */
 
-// start a new aplication
+/**
+ * Start a new application
+ */
 router.get('/application/new', ctrlMain.newApplication);
 router.post('/application/new', ctrlMain.addNewApplication);
 
-// manage existing application
+/**
+ * Manage an existing application
+ */
 router.get('/manage', ctrlMain.manageApplication);
 router.post('/manage', ctrlMain.doManageApplication);
 
-// upload documents
+/**
+ * upload documents
+ */
 router.get('/upload/:fileName', ctrlMain.fileUpload);
 router.post('/upload/:fileName', uploading.any() ,ctrlMain.doFileUpload);
 

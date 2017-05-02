@@ -6,6 +6,11 @@ require('mongoose-type-email');
 var moment = require('moment');
 var shortId = require('shortid');
 
+
+/**
+ * Mongoose Schema for the visa assessment section
+ */
+
 var assessment_Schema = new mongoose.Schema({
     assessor: {type: String, required: true, uppercase: true},
     visaType: {type: String, default: "VISITOR"},
@@ -14,6 +19,10 @@ var assessment_Schema = new mongoose.Schema({
     validUntil: {type: Date, default: + new Date() + 90*24*60*60*1000},  // sets the valid until date to 3 months from approval
     reason: {type: String, uppercase: true}
 });
+
+/**
+ * Mongoose schema for the visa application
+ */
 
 var applicant_Schema = new mongoose.Schema({
     open: {type: Boolean, default: true},
@@ -42,6 +51,8 @@ var applicant_Schema = new mongoose.Schema({
     assessment: [assessment_Schema]
 });
 
-
+/**
+ * Compile the model
+ */
 
 mongoose.model('Application', applicant_Schema);

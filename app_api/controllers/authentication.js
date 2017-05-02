@@ -14,10 +14,10 @@ var sendJsonResponse = function (res, status, data) {
 };
 
 
-
-
-/*
- Registration controller for the api
+/**
+ * Registration controller API
+ * @param req
+ * @param res
  */
 
 
@@ -51,8 +51,10 @@ module.exports.register = function (req, res) {
 };
 
 
-/*
- Login controller for the api
+/**
+ * Lgin API controller
+ * @param req
+ * @param res
  */
 
 module.exports.login = function (req, res) {

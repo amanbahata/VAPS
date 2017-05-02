@@ -5,13 +5,19 @@ var request = require('request');
 var fs = require('fs');
 var jwt = require('jsonwebtoken');
 var mailer = require('../communication/change_notification_mailer');
-/*
- Setting up the api options
+
+/**
+ *Setting up the api options
  */
 var apiOptions = {
     server : "http://localhost:3000"
 };
 
+/**
+ * Makes an API call to get information that will be displayed in the report generating tool page
+ * @param req
+ * @param res
+ */
 
 module.exports.showStats = function (req, res) {
 
@@ -21,10 +27,6 @@ module.exports.showStats = function (req, res) {
         url: apiOptions.server + path,
         method: "GET",
         json: {}
-        // headers: {
-        //     "payload": req.session.token
-        // }
-
     };
     request(requestOptions,
         function (err, response, body) {
@@ -110,6 +112,11 @@ var getReports = function (req, res, responseBody) {
     });
 };
 
+/**
+ * Make an API call to get the list of visa application that have a open status
+ * @param req
+ * @param res
+ */
 
 module.exports.listApplications = function (req, res) {
 
@@ -135,6 +142,13 @@ module.exports.listApplications = function (req, res) {
     }
 };
 
+
+/**
+ * Named function to render the restricted area home page
+ * @param req
+ * @param res
+ * @param responseBody
+ */
 var listApplicationsRenderer = function(req, res,responseBody) {
         var message;
         var response = false;
@@ -157,6 +171,11 @@ var listApplicationsRenderer = function(req, res,responseBody) {
         });
 };
 
+/**
+ * Makes an API call to get information of a single visa application
+ * @param req
+ * @param res
+ */
 
 module.exports.openApplication = function (req, res) {
 
@@ -181,6 +200,13 @@ module.exports.openApplication = function (req, res) {
         res.redirect('/users/login');
     }
 };
+
+/**
+ * Nmed function for rendering the details of a visa application
+ * @param req
+ * @param res
+ * @param responseBody
+ */
 
 var renderApplication = function(req, res, responseBody) {
     var message;
@@ -223,7 +249,11 @@ var renderApplication = function(req, res, responseBody) {
     }
 };
 
-
+/**
+ * Processes the entered visa assessment information
+ * @param req
+ * @param res
+ */
 module.exports.doAssessment = function (req, res) {
     var payload = req.session.token;
     var decode = jwt.verify(payload, process.env.JWT_SECRET);
@@ -254,6 +284,11 @@ module.exports.doAssessment = function (req, res) {
     );
 };
 
+/**
+ * Renders the login page
+ * @param req
+ * @param res
+ */
 
 module.exports.login = function (req, res) {
     var requestOptions, path, postData;
@@ -285,36 +320,11 @@ module.exports.login = function (req, res) {
 };
 
 
-
-
-module.exports.doLogin = function (req, res) {
-    var requestOptions, path, postData;
-    path = '/api/login';
-    postData = {
-        email: req.body.email,
-        password: req.body.password
-    };
-    requestOptions = {
-        url : apiOptions.server + path,
-        method : "POST",
-        json: postData
-    };
-    request (requestOptions,
-        function(err, response){
-            if (response.statusCode === 200){
-                var token = response.body.token;
-                req.session.token = token;
-                setTimeout(function(){res.redirect('/users')}, 3000);
-            }else{
-                res.render('login',{
-                    title:'Login',
-                    pageHeader: {title: 'Login'},
-                    message : 'invalid email or password.'
-                });
-            }
-        }
-    );
-};
+/**
+ * Performs logout by destroying the session
+ * @param req
+ * @param res
+ */
 
 
 module.exports.doLogout = function (req, res) {

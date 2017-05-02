@@ -4,7 +4,11 @@
 const nodemailer = require('nodemailer');
 
 
-// get the data from environment variables
+/**
+ * get the data from environment variables
+ * Make sure the access credentials for the email provider are set up in the .env file
+ *
+ */
 var user_email = process.env.SENDER_EMAIL;
 var pass = process.env.SENDER_EMAIL_PASSWORD;
 

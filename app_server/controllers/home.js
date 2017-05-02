@@ -10,13 +10,18 @@ var fs = require('fs');
 
 
 
-/*
- Setting up the api options
+/**
+ *Setting up the api options
  */
 var apiOptions = {
     server : "http://localhost:3000"
 };
 
+/**
+ * Compile and render the home page
+ * @param req
+ * @param res
+ */
 
 module.exports.home = function (req, res) {
     res.render('index', {
@@ -27,6 +32,11 @@ module.exports.home = function (req, res) {
     });
 };
 
+/**
+ * Compile and render the start new application page
+ * @param req
+ * @param res
+ */
 
 module.exports.newApplication = function (req, res) {
     res.render('new_application', {
@@ -34,6 +44,12 @@ module.exports.newApplication = function (req, res) {
         success: false
     });
 };
+
+/**
+ * Process the submitted visa application form
+ * @param req
+ * @param res
+ */
 
 module.exports.addNewApplication = function (req, res) {
     var requestOptions, path, postData;
@@ -89,6 +105,11 @@ module.exports.addNewApplication = function (req, res) {
 };
 
 
+/**
+ * Compile and render manage applications page
+ * @param req
+ * @param res
+ */
 
 module.exports.manageApplication = function (req, res) {
     res.render('manage_applications', {
@@ -97,6 +118,12 @@ module.exports.manageApplication = function (req, res) {
     });
 };
 
+
+/**
+ * Process the submitted reference number and document number
+ * @param req
+ * @param res
+ */
 
 module.exports.doManageApplication = function (req, res) {
     var requestOptions, path;
@@ -114,8 +141,8 @@ module.exports.doManageApplication = function (req, res) {
 };
 
 
-/*
- Rendering the single application
+/**
+ * Name function for rendering the single application
  */
 
 var applicationDetailRenderer = function(req, res, responseBody, response){
@@ -137,12 +164,24 @@ var applicationDetailRenderer = function(req, res, responseBody, response){
 };
 
 
+/**
+ * Render the file uploads page
+ * @param req
+ * @param res
+ */
+
 module.exports.fileUpload = function (req, res) {
     res.render('file_upload', {
         title: 'Upload documents',
         fileName: req.params.fileName
     });
 };
+
+/**
+ * Process the uploaded files
+ * @param req
+ * @param res
+ */
 
 module.exports.doFileUpload = function (req, res) {
     var success = true;
