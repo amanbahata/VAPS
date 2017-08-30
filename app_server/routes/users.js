@@ -21,7 +21,7 @@ router.get('/reports', ctrlMain.showStats);
  * Login - logout
  */
 router.get('/login', ctrlMain.login);
-router.post('/login', ctrlMain.doLogin);
+//router.post('/login', ctrlMain.doLogin);
 router.get('/logout', ctrlMain.doLogout);
 
 
