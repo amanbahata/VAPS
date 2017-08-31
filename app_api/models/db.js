@@ -11,6 +11,9 @@
 var mongoose = require('mongoose');
 var dbURI = 'mongodb://localhost/VAPS';
 mongoose.Promise = global.Promise;
+if (process.env.NODE_ENV === 'production'){
+   dbURI = process.env.MONGOLAB_URI;
+}
 mongoose.connect(dbURI);
 
 mongoose.connection.on('connected', function () {
