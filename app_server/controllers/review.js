@@ -304,7 +304,7 @@ module.exports.login = function (req, res) {
     };
     request (requestOptions,
         function(err, response){
-            if (response && response.statusCode === 200){
+            if (response){
                 var token = response.body.token;
                 req.session.token = token;
                 setTimeout(function(){res.redirect('/users')}, 3000);
